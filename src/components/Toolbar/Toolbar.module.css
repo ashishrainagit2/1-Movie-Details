@@ -1,0 +1,16 @@
+.Toolbar {
+    display: grid;
+    grid-template-columns: repeat(8, 1fr);
+    margin: 10px auto;
+    align-items: center;
+    justify-content: center;
+    background-color: rgb(204, 164, 164);
+}
+
+.logo {
+
+}
+
+.menubar {
+    grid-column: 6/8;
+}
