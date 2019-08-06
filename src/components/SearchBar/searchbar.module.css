@@ -1,0 +1,13 @@
+.Searchbar {
+    display: grid;
+    justify-self: start;
+    margin: 10px;
+    padding: 10px;
+}
+
+.Searchbar input {
+    padding: 10px;
+    border-radius: 5px;
+    border-style:solid; 
+    border: 1px solid grey;
+}

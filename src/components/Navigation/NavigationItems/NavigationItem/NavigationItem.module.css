@@ -1,3 +1,10 @@
 .NavigationItem {
-    
+    border: 1px solid grey;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.NavigationItem:hover {
+    background: grey;
+    color:#fff;
 }

@@ -9,10 +9,13 @@ class App extends Component {
         <div className="wrapper">
           <Toolbar className="ToolbarWrapper"/>
         </div>
-        
       </div>
     );
   }
 }
+
+const mapStateToProps = state => { }
+
+const mapDispatchToProps = dispatch => { }
 
 export default App;

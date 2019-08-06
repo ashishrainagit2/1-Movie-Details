@@ -2,6 +2,7 @@ import React from 'react';
 import classes from './Toolbar.module.css';
 import Logo from '../Logo/Logo';
 import NavigationItems from '../Navigation/NavigationItems/NavigationItems';
+import Searchbar from '../SearchBar/SearchBar';
 
 const toolbar = (props) => (
     <header className={classes.Toolbar}>
@@ -12,7 +13,7 @@ const toolbar = (props) => (
             <NavigationItems />
         </nav >
         <div className="searchbar">
-            {/* <Searchbar /> */}
+            <Searchbar />
         </div>  
     </header>
 )
