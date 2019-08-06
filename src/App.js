@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
 import Toolbar from "./components/Toolbar/Toolbar";
+import Movielist from "./containers/Movielist/Movielist";
 
 class App extends Component {
   render(){
@@ -8,14 +9,12 @@ class App extends Component {
       <div className="App">
         <div className="wrapper">
           <Toolbar className="ToolbarWrapper"/>
+            <Movielist />
         </div>
       </div>
     );
   }
 }
 
-const mapStateToProps = state => { }
-
-const mapDispatchToProps = dispatch => { }
 
 export default App;
