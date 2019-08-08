@@ -2,33 +2,36 @@ import React , {Component} from 'react';
 import * as actions from '../../store/actions/index';
 import axios from '../../axios-orders';
 import { connect } from 'react-redux';
+import Movieinfo from '../../components/Movieinfo/Movieinfo';
+import classes from './Movielist.module.css';
 
 class Movielist extends Component {
 
     componentDidMount () {
-        console.log("props==>" , this.props); 
-        this.props.onInitIngredients();
+        this.props.onInitMovielist();
     } 
 
     render (){
         return (
-            <div>
-                <h2>Movie List</h2>
+            <div className={classes.Movielist}>
+                <div className={classes.MovielistWrapper}>
+                    <Movieinfo list={this.props.movielist}/>
+                </div>
             </div>
         )
     }
 }
 
-
 const mapStateToProps = state => {
     return {
-        movielist: state.movieList.Movielist
+        movielist: state.movieList.Movielist,
+        page : state.movieList.page
     };
 }
 
 const mapDispatchToProps = dispatch => {
     return {
-        onInitIngredients: () => dispatch(actions.initIngredients())
+        onInitMovielist: () => dispatch(actions.initMovielist())
     }
 }
 

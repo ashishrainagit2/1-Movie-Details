@@ -1,3 +1,3 @@
 export {
-    initIngredients
+    initMovielist
 } from './Movielist';

@@ -2,11 +2,22 @@ import * as actionTypes from '../actions/actionTypes';
 import { updateObject } from '../utility';
 
 const initialState = {
-    Movielist : null
+    Movielist : null,
+    page : null
 }
 
-const addMovieList = () => {
-    console.log("reducer action");
+
+const setIngredients = (state, action) => {
+    
+};
+
+const addMovieList = (state , action) => {
+    console.log("movie list in reduicer" , action.movielist);
+    return updateObject( state, {
+        Movielist: action.movielist.results,
+        page : action.movielist.page
+
+    } );
 }
 
 const reducer = ( state = initialState, action ) => {

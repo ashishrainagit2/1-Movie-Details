@@ -1,0 +1,8 @@
+.Movielist {
+    margin: 20px auto;
+}
+
+.MovielistWrapper {
+    display: grid;
+    grid-template-columns: repeat(4 , 1fr);
+}

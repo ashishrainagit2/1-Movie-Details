@@ -3,7 +3,7 @@
     grid-template-columns: 1fr 3fr 1fr ;
     align-items: center;
     justify-content: center;
-    background-color: rgb(204, 164, 164);
+    background-color: #800000;
 }
 
 .logo {

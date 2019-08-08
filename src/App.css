@@ -1,9 +1,13 @@
 .App {
   text-align: center;
+  font-family: 'Kaushan Script', cursive;
+  font-size: 25px;
 }
 
 .wrapper {
   margin: 0 20px;
+  background: #ffe6e6
+
 }
 .ToolbarWrapper {
  
