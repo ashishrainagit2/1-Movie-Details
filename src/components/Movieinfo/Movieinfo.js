@@ -7,10 +7,15 @@ const movieinfo = (props) => {
              Moviebox =  (props.list).map((value, i) => {
                 return (
                     <div key={i} className={classes.Movieinfo}>
-                        <img src={ "https://image.tmdb.org/t/p/w300/" + value.poster_path} alt={value.title}/>
-                        <p >{value.title}</p>
+                        <div className={classes.ImageWrapper}>
+                            <img src={ "https://image.tmdb.org/t/p/w300" + value.poster_path} alt={value.title}/>
+                            <span>Hello World</span>
+                        </div>
+                        <div className={classes.DetailsWrapper}>
+                            <p >{value.title}</p>
+                        </div>
+                        
                     </div>
-                    // <div key={i}>{value.title}</div>
                 )
             })
         }
