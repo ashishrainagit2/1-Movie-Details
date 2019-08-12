@@ -9,10 +9,17 @@ const movieinfo = (props) => {
                     <div key={i} className={classes.Movieinfo}>
                         <div className={classes.ImageWrapper}>
                             <img src={ "https://image.tmdb.org/t/p/w300" + value.poster_path} alt={value.title}/>
-                            <span>Hello World</span>
+                            <span></span>
                         </div>
                         <div className={classes.DetailsWrapper}>
-                            <p >{value.title}</p>
+                                <div>
+                                    <p >{value.title}</p>
+                                    <div className={classes.Info1}>
+                                        <span className={classes.ReleaseDate}>Release Date : {value.release_date}</span>
+                                        <span className={classes.AvgVote}>Avg Vote: {value.vote_average}</span>
+                                    </div>
+
+                                </div>
                         </div>
                         
                     </div>

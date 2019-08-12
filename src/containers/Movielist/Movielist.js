@@ -15,7 +15,7 @@ class Movielist extends Component {
         return (
             <div className={classes.Movielist}>
                 <div className={classes.MovielistWrapper}>
-                    <Movieinfo list={this.props.movielist}/>
+                    <Movieinfo list={this.props.movielist} onClick={() => {this.onClickMovieBox()}}/>
                 </div>
             </div>
         )
@@ -25,13 +25,15 @@ class Movielist extends Component {
 const mapStateToProps = state => {
     return {
         movielist: state.movieList.Movielist,
-        page : state.movieList.page
+        page : state.movieList.page,
+        modalStatus : state.movieList.ModalStatus
     };
 }
 
 const mapDispatchToProps = dispatch => {
     return {
-        onInitMovielist: () => dispatch(actions.initMovielist())
+        onInitMovielist: () => dispatch(actions.initMovielist()),
+        onClickMovieBox : () => dispatch(actions.getMoreMovieInfo())
     }
 }
 

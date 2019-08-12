@@ -3,13 +3,19 @@ import { updateObject } from '../utility';
 
 const initialState = {
     Movielist : null,
-    page : null
+    page : null,
+    ModalStatus : false
 }
 
 
-const setIngredients = (state, action) => {
-    
-};
+const getMoreMovieInfo = (state , action) =>  {
+    let newModalState = !this.state.ModalStatus;
+    return updateObject(
+        state , {
+            ModalStatus : newModalState
+        }
+    )
+}
 
 const addMovieList = (state , action) => {
     console.log("movie list in reduicer" , action.movielist);
@@ -23,6 +29,7 @@ const addMovieList = (state , action) => {
 const reducer = ( state = initialState, action ) => {
     switch ( action.type ) {
         case actionTypes.SET_MOVIE_LIST: return addMovieList( state, action );
+        case actionTypes.GET_MORE_MOVIE_INFO : return getMoreMovieInfo(state , action);
         default: return state;
     }
 };

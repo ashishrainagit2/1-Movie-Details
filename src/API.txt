@@ -1,0 +1,8 @@
+API taken from:
+https://developers.themoviedb.org
+
+V3
+https://api.themoviedb.org/3/movie/popular?api_key=c18a8c63bee9d66665a486a624d48177&language=en-US&page=1
+
+V4
+https://api.themoviedb.org/4/list/2?api_key=c18a8c63bee9d66665a486a624d48177&language=en-US&page=10

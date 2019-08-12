@@ -1,3 +1,4 @@
 export {
-    initMovielist
+    initMovielist,
+    getMoreMovieInfo
 } from './Movielist';

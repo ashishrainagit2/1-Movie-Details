@@ -8,13 +8,18 @@ export const setMovieList = ( movielist ) => {
         movielist: movielist
     };
 };
-
 export const fetchMovieListFailed = () => {
     return {
         type: actionTypes.FETCH_MOVIELIST_FAILED
     };
 };
 
+export const getMoreMovieInfo = () => {
+    console.log('here');
+    return  {
+        type : actionTypes.GET_MORE_MOVIE_INFO
+    }
+}
 
 export const initMovielist = () => {
     return dispatch => {
