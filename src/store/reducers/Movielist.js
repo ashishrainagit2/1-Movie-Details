@@ -2,10 +2,11 @@ import * as actionTypes from '../actions/actionTypes';
 import { updateObject } from '../utility';
 
 const initialState = {
-    Movielist : null,
+    Movielist : [],
     page : null,
     ModalStatus : false,
-    activeMovie : null
+    activeMovie : null,
+    pageNumber : 1
 }
 
 
@@ -22,7 +23,7 @@ const getMoreMovieInfo = (state , action) =>  {
 
 const addMovieList = (state , action) => {
     return updateObject( state, {
-        Movielist: action.movielist.results,
+        Movielist: [...state.Movielist , ...action.movielist.results],
         page : action.movielist.page
     } );
 }

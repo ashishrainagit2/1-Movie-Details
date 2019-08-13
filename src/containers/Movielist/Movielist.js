@@ -10,7 +10,7 @@ import Modal from '../../components/UIcomponents/Modal/Modal';
 class Movielist extends Component {
 
     componentDidMount () {
-        this.props.onInitMovielist();
+        this.props.onInitMovielist(this.props.pageNumber);
     } 
 
     render (){
@@ -61,12 +61,15 @@ class Movielist extends Component {
         }
 
         return (
-            <div className={classes.Movielist}>
+            <div className={classes.Movielist} onScroll={this.test}>
                 <div className={classes.MovielistWrapper}>
                     <Modal show={this.props.modalStatus} modalClose={this.props.onClickMovieBox}>
                         {modalContent}
                     </Modal>
                     <Movieinfo list={this.props.movielist} moreInfo={ this.props.onClickMovieBox}/>
+                    <div>
+                        <a href="#" >Load More ...</a>
+                    </div>
                 </div>
             </div>
         )
@@ -78,14 +81,16 @@ const mapStateToProps = state => {
         movielist: state.movieList.Movielist,
         page : state.movieList.page,
         modalStatus : state.movieList.ModalStatus,
-        activeMovie : state.movieList.activeMovie
+        activeMovie : state.movieList.activeMovie,
+        pageNumber : state.movieList.pageNumber,
     };
 }
 
 const mapDispatchToProps = dispatch => {
     return {
-        onInitMovielist: () => dispatch(actions.initMovielist()),
-        onClickMovieBox : (id) => dispatch(actions.getMoreMovieInfo(id))
+        onInitMovielist: (no) => dispatch(actions.initMovielist(no)),
+        onClickMovieBox : (id) => dispatch(actions.getMoreMovieInfo(id)),
+        onLoadMore : () => dispatch(actions.getMoreMovies())
     }
 }
 

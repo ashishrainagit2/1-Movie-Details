@@ -22,9 +22,10 @@ export const getMoreMovieInfo = (props) => {
     }
 }
 
-export const initMovielist = () => {
+export const initMovielist = (no) => {
     return dispatch => {
-        axios.get( 'https://api.themoviedb.org/3/movie/popular?api_key=c18a8c63bee9d66665a486a624d48177&language=en-US&page=1')
+        let url = `https://api.themoviedb.org/3/movie/popular?api_key=c18a8c63bee9d66665a486a624d48177&language=en-US&page=${no}`;
+        axios.get( url)
             .then( response => {
                dispatch(setMovieList(response.data));
             } )
