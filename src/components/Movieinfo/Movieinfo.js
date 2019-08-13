@@ -2,11 +2,12 @@ import React from 'react';
 import classes from './Movieinfo.module.css'
 
 const movieinfo = (props) => {
+    console.log(props);
         let Moviebox = <p>Loading ...</p>;
         if(props.list != null ) {
              Moviebox =  (props.list).map((value, i) => {
-                return (
-                    <div key={i} className={classes.Movieinfo}>
+                return ( 
+                    <div key={i} className={classes.Movieinfo} onClick={()=>props.moreInfo()}>
                         <div className={classes.ImageWrapper}>
                             <img src={ "https://image.tmdb.org/t/p/w300" + value.poster_path} alt={value.title}/>
                             <span></span>

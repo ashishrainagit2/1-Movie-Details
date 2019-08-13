@@ -4,6 +4,8 @@ import axios from '../../axios-orders';
 import { connect } from 'react-redux';
 import Movieinfo from '../../components/Movieinfo/Movieinfo';
 import classes from './Movielist.module.css';
+import Modal from '../../components/UIcomponents/Modal/Modal';
+
 
 class Movielist extends Component {
 
@@ -15,7 +17,8 @@ class Movielist extends Component {
         return (
             <div className={classes.Movielist}>
                 <div className={classes.MovielistWrapper}>
-                    <Movieinfo list={this.props.movielist} onClick={() => {this.onClickMovieBox()}}/>
+                    <Modal show={this.props.modalStatus} modalClose={this.props.onClickMovieBox}/>
+                    <Movieinfo list={this.props.movielist} moreInfo={this.props.onClickMovieBox}/>
                 </div>
             </div>
         )

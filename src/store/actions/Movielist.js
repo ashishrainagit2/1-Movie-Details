@@ -14,7 +14,7 @@ export const fetchMovieListFailed = () => {
     };
 };
 
-export const getMoreMovieInfo = () => {
+export const getMoreMovieInfo = (props) => {
     console.log('here');
     return  {
         type : actionTypes.GET_MORE_MOVIE_INFO

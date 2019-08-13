@@ -9,10 +9,11 @@ const initialState = {
 
 
 const getMoreMovieInfo = (state , action) =>  {
-    let newModalState = !this.state.ModalStatus;
+    console.log("gerer");
+    let newModalStatus = !(state.ModalStatus);
     return updateObject(
         state , {
-            ModalStatus : newModalState
+            ModalStatus : newModalStatus
         }
     )
 }
