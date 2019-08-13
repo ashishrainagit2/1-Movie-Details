@@ -4,26 +4,26 @@ import { updateObject } from '../utility';
 const initialState = {
     Movielist : null,
     page : null,
-    ModalStatus : false
+    ModalStatus : false,
+    activeMovie : null
 }
 
 
 const getMoreMovieInfo = (state , action) =>  {
-    console.log("gerer");
+    console.log("action reduder" , action.id);
     let newModalStatus = !(state.ModalStatus);
     return updateObject(
         state , {
-            ModalStatus : newModalStatus
+            ModalStatus : newModalStatus,
+            activeMovie : action.id
         }
     )
 }
 
 const addMovieList = (state , action) => {
-    console.log("movie list in reduicer" , action.movielist);
     return updateObject( state, {
         Movielist: action.movielist.results,
         page : action.movielist.page
-
     } );
 }
 

@@ -7,7 +7,7 @@ const movieinfo = (props) => {
         if(props.list != null ) {
              Moviebox =  (props.list).map((value, i) => {
                 return ( 
-                    <div key={i} className={classes.Movieinfo} onClick={()=>props.moreInfo()}>
+                    <div key={value.id} className={classes.Movieinfo} onClick={(id) => props.moreInfo(value.id)}>
                         <div className={classes.ImageWrapper}>
                             <img src={ "https://image.tmdb.org/t/p/w300" + value.poster_path} alt={value.title}/>
                             <span></span>
@@ -22,7 +22,6 @@ const movieinfo = (props) => {
 
                                 </div>
                         </div>
-                        
                     </div>
                 )
             })
