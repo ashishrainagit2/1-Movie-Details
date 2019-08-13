@@ -20,12 +20,38 @@ class Movielist extends Component {
              modalContent = (this.props.movielist).map((value, i) => {
                  if(this.props.activeMovie == value.id){
                     return (
-                        <div>
-                            <span>
+                        <div className={classes.ModalContent}>
+                            <div className={classes.ModalImage}>
                                 <img src={ "https://image.tmdb.org/t/p/w400" + value.poster_path} alt={value.title}/>
-                            </span>
-                            <div>
-                                {value.title}
+                            </div>
+                            <div className={classes.ModalInfo}>
+                                <div className={classes.infoLine}>
+                                        <span className={classes.ModalTitle}>Title: </span> 
+                                        <span>{value.title}</span>
+                                </div>
+                                <div className={classes.infoLine}>
+                                        <span className={classes.ModalTitle}>Vote Count:</span> 
+                                        <span>{value.vote_count}</span>
+                                </div>
+                                <div className={classes.infoLine}>
+                                        <span className={classes.ModalTitle}>Average Rating:</span> 
+                                        <span>{value.vote_average}</span>
+                                </div>
+                                <div className={classes.infoLine}>
+                                        <span className={classes.ModalTitle}>Popularity:</span> 
+                                        <span>{value.popularity}</span>
+                                </div>
+                                <div className={classes.infoLine}>
+                                        <span>{value.adult}</span>
+                                </div>
+                                <div className={classes.infoLine}>
+                                        <span className={classes.ModalTitle}>Release Date: </span> 
+                                        <span>{value.release_date}</span>
+                                </div>
+                                <div className={classes.infoLine}>
+                                        <span className={classes.ModalTitle}>Overview:</span> 
+                                        <div>{value.overview}</div>
+                                </div>
                             </div>
                         </div>
                     )
@@ -33,6 +59,7 @@ class Movielist extends Component {
                 
             })
         }
+
         return (
             <div className={classes.Movielist}>
                 <div className={classes.MovielistWrapper}>
