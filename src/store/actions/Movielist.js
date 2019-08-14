@@ -33,8 +33,18 @@ export const getMoreMoviesOnScroll = (props) => {
     const pageOffset = window.pageYOffset + window.innerHeight;
     const bottonOffset = 30;
     console.log(pageOffset > lastElementOffset - bottonOffset);
+    if(pageOffset > lastElementOffset - bottonOffset){
+        return dispatch => {
+
+            dispatch(abc());
+            
+        }
+    }
+}
+
+export const abc = () => {
     return {
-        type: actionTypes.GET_MORE_MOVIE_CARDS_ON_SCROLL,
+        type: actionTypes.GET_MORE_MOVIE_CARDS_ON_SCROLL
     }
 }
 
