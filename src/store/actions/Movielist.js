@@ -15,14 +15,31 @@ export const fetchMovieListFailed = () => {
 };
 
 export const getMoreMovieInfo = (props) => {
-    console.log("props123" , props);
     return  {
         type : actionTypes.GET_MORE_MOVIE_INFO,
         id : props
     }
 }
 
+export const getMoreMovies = () => {
+    return {
+        type: actionTypes.GET_MORE_MOVIE_CARDS,
+    }
+}
+
+export const getMoreMoviesOnScroll = (props) => {
+    const lastElement = document.querySelector('header + div > div > div:last-child');
+    const lastElementOffset = lastElement.offsetTop + lastElement.clientHeight;
+    const pageOffset = window.pageYOffset + window.innerHeight;
+    const bottonOffset = 30;
+    console.log(pageOffset > lastElementOffset - bottonOffset);
+    return {
+        type: actionTypes.GET_MORE_MOVIE_CARDS_ON_SCROLL,
+    }
+}
+
 export const initMovielist = (no) => {
+        no++;
     return dispatch => {
         let url = `https://api.themoviedb.org/3/movie/popular?api_key=c18a8c63bee9d66665a486a624d48177&language=en-US&page=${no}`;
         axios.get( url)

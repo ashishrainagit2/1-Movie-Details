@@ -19,7 +19,6 @@ const movieinfo = (props) => {
                                         <span className={classes.ReleaseDate}>Release Date : {value.release_date}</span>
                                         <span className={classes.AvgVote}>Avg Vote: {value.vote_average}</span>
                                     </div>
-
                                 </div>
                         </div>
                     </div>

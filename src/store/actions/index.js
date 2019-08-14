@@ -1,4 +1,6 @@
 export {
     initMovielist,
-    getMoreMovieInfo
+    getMoreMovieInfo,
+    getMoreMovies,
+    getMoreMoviesOnScroll
 } from './Movielist';

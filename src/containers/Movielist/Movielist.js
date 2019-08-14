@@ -11,6 +11,10 @@ class Movielist extends Component {
 
     componentDidMount () {
         this.props.onInitMovielist(this.props.pageNumber);
+        // this.props.scrollListner(this.props.pageNumber,this.props.totalPages,this.props.scrolling);
+        window.addEventListener('scroll', (e) => {
+            this.props.scrollListner(this.props.pageNumber,this.props.totalPages,this.props.scrolling);
+        })
     } 
 
     render (){
@@ -61,15 +65,15 @@ class Movielist extends Component {
         }
 
         return (
-            <div className={classes.Movielist} onScroll={this.test}>
+            <div className={classes.Movielist}>
                 <div className={classes.MovielistWrapper}>
                     <Modal show={this.props.modalStatus} modalClose={this.props.onClickMovieBox}>
                         {modalContent}
                     </Modal>
                     <Movieinfo list={this.props.movielist} moreInfo={ this.props.onClickMovieBox}/>
-                    <div>
-                        <a href="#" >Load More ...</a>
-                    </div>
+                    {/* <div className={classes.LoadMore}>
+                        <span onClick={() => this.props.onInitMovielist(this.props.page)}>Load More ...</span>
+                    </div> */}
                 </div>
             </div>
         )
@@ -83,6 +87,8 @@ const mapStateToProps = state => {
         modalStatus : state.movieList.ModalStatus,
         activeMovie : state.movieList.activeMovie,
         pageNumber : state.movieList.pageNumber,
+        totalPages : state.movieList.totalPages,
+        scrolling : state.movieList.scrolling
     };
 }
 
@@ -90,7 +96,8 @@ const mapDispatchToProps = dispatch => {
     return {
         onInitMovielist: (no) => dispatch(actions.initMovielist(no)),
         onClickMovieBox : (id) => dispatch(actions.getMoreMovieInfo(id)),
-        onLoadMore : () => dispatch(actions.getMoreMovies())
+        onLoadMore : () => dispatch(actions.getMoreMovies()),
+        scrollListner : (pageNumber, totalPages, scrolling) => dispatch(actions.getMoreMoviesOnScroll(pageNumber, totalPages, scrolling))
     }
 }
 

@@ -6,9 +6,10 @@ const initialState = {
     page : null,
     ModalStatus : false,
     activeMovie : null,
-    pageNumber : 1
+    pageNumber : 0,
+    totalPages : null,
+    scrolling : false
 }
-
 
 const getMoreMovieInfo = (state , action) =>  {
     console.log("action reduder" , action.id);
@@ -28,10 +29,22 @@ const addMovieList = (state , action) => {
     } );
 }
 
+const getMoreMovieCards = (state , action) => {
+    console.log('reducer get more movie cards');
+    return state;
+}
+
+const getMoreMovieCardsOnScroll = (state , action) => {
+    console.log("more movie on scroll : reducer");
+    return state;
+}
+
 const reducer = ( state = initialState, action ) => {
     switch ( action.type ) {
         case actionTypes.SET_MOVIE_LIST: return addMovieList( state, action );
         case actionTypes.GET_MORE_MOVIE_INFO : return getMoreMovieInfo(state , action);
+        case actionTypes.GET_MORE_MOVIE_CARDS : return getMoreMovieCards(state , action);
+        case actionTypes.GET_MORE_MOVIE_CARDS_ON_SCROLL : return getMoreMovieCardsOnScroll(state , action);
         default: return state;
     }
 };

@@ -25,6 +25,29 @@
     text-align: left;
 }
 
+.LoadMore {
+    grid-column: 1/5;
+    margin: 10px;
+    text-align: center;
+    justify-content: center;
+    display: none;
+}
+
+.LoadMore span{
+    display: inline-block;
+    border : 1px solid grey;
+    padding: 10px;
+    width: 200px;
+    border-radius: 5px;
+    background-color: #800000;
+    color: white;
+}
+
+.LoadMore span:hover{ 
+  color : #000;
+  
+}
+
 @media only screen and (min-width: 768px) { 
     .MovielistWrapper {
         grid-template-columns: repeat(4 , 1fr);
