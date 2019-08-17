@@ -6,7 +6,16 @@
 }
 
 .NavigationItem:hover {
-    background: #d9f7ed;
+    background: grey;
     color: #000;
+}
 
+
+.NavigationLink {
+    color: #FFF;
+    text-decoration: none;
+}
+
+.NavigationLink:hover {
+    color: #000
 }

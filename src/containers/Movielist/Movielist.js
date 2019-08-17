@@ -13,12 +13,17 @@ class Movielist extends Component {
         this.props.onInitMovielist(this.props.pageNumber);
         // this.props.scrollListner(this.props.pageNumber,this.props.totalPages,this.props.scrolling);
         window.addEventListener('scroll', (e) => {
-            this.props.scrollListner(this.props.pageNumber,this.props.totalPages,this.props.scrolling);
+            const lastElement = document.querySelector('header + div > div > div:last-child');
+            const lastElementOffset = lastElement.offsetTop + lastElement.clientHeight;
+            const pageOffset = window.pageYOffset + window.innerHeight;
+            const bottonOffset = 30;
+            if(pageOffset > lastElementOffset - bottonOffset){
+                this.props.onInitMovielist(this.props.pageNumber);
+            }
         })
     } 
 
     render (){
-        console.log('movielist state' , this.props.movielist);
         let modalContent = null;
         if(this.props.movielist != null){
              modalContent = (this.props.movielist).map((value, i) => {
@@ -56,6 +61,7 @@ class Movielist extends Component {
                                         <span className={classes.ModalTitle}>Overview:</span> 
                                         <div>{value.overview}</div>
                                 </div>
+                                <div className={classes.MoreInfo}>More Info</div>
                             </div>
                         </div>
                     )
@@ -96,8 +102,7 @@ const mapDispatchToProps = dispatch => {
     return {
         onInitMovielist: (no) => dispatch(actions.initMovielist(no)),
         onClickMovieBox : (id) => dispatch(actions.getMoreMovieInfo(id)),
-        onLoadMore : () => dispatch(actions.getMoreMovies()),
-        scrollListner : (pageNumber, totalPages, scrolling) => dispatch(actions.getMoreMoviesOnScroll(pageNumber, totalPages, scrolling))
+        onLoadMore : () => dispatch(actions.getMoreMovies())
     }
 }
 

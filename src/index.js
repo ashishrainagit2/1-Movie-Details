@@ -6,12 +6,15 @@ import thunk from 'redux-thunk';
 import './index.css';
 import App from './App';
 import movieListReducer from './store/reducers/Movielist';
+import tvShowListReducer from './store/reducers/Tvshowlist';
 import * as serviceWorker from './serviceWorker';
+import { BrowserRouter } from 'react-router-dom';
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
 const rootReducer = combineReducers({
-    movieList: movieListReducer
+    movieList: movieListReducer,
+    tvShowList : tvShowListReducer
 });
 
 const store = createStore(rootReducer, composeEnhancers(
@@ -20,7 +23,9 @@ const store = createStore(rootReducer, composeEnhancers(
 
 const app = (
     <Provider store={store}>
+        <BrowserRouter>
             <App />
+        </BrowserRouter>
     </Provider>
 );
 

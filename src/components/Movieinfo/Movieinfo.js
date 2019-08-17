@@ -2,7 +2,6 @@ import React from 'react';
 import classes from './Movieinfo.module.css'
 
 const movieinfo = (props) => {
-    console.log(props);
         let Moviebox = <p>Loading ...</p>;
         if(props.list != null ) {
              Moviebox =  (props.list).map((value, i) => {
