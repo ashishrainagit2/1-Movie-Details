@@ -5,5 +5,6 @@ export {
 } from './Movielist';
 
 export {
-    initTvShowList
+    initTvShowList,
+    getMoreTvInfo
 } from './Tvshowlist';

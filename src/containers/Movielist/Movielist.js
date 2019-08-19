@@ -16,7 +16,7 @@ class Movielist extends Component {
             const lastElement = document.querySelector('header + div > div > div:last-child');
             const lastElementOffset = lastElement.offsetTop + lastElement.clientHeight;
             const pageOffset = window.pageYOffset + window.innerHeight;
-            const bottonOffset = 30;
+            const bottonOffset = 10;
             if(pageOffset > lastElementOffset - bottonOffset){
                 this.props.onInitMovielist(this.props.pageNumber);
             }
