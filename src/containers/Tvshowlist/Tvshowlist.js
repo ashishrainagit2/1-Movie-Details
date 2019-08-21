@@ -18,9 +18,15 @@ class Tvshowlist extends Component {
                 const lastElementOffset = lastElement.offsetTop + lastElement.clientHeight;
                 const pageOffset = window.pageYOffset + window.innerHeight;
                 const bottonOffset = 30;
-                if(pageOffset > lastElementOffset - bottonOffset){
-                    console.log("function for api called");
-                    this.props.onInitTvShowList(this.props.pageNumber);
+                if((pageOffset > lastElementOffset - bottonOffset)){
+                            counter++;
+                            if(this.props.pageNumber == counter){
+                                this.props.onInitTvShowList(this.props.pageNumber);
+                            }else {
+                                counter--;
+                            }
+                            
+                            
                 }
             })
             
@@ -89,13 +95,16 @@ class Tvshowlist extends Component {
         }
 }
 
+let counter = 0; 
+
 const mapStateToProps = state => {
     return {
         pageNumber: state.tvShowList.pageNumber,
         totalPages: state.tvShowList.totalPages,
         tvShows: state.tvShowList.tvShows,
         modalStatus : state.tvShowList.ModalStatus,
-        activeMovie : state.tvShowList.activeMovie
+        activeMovie : state.tvShowList.activeMovie,
+        loadingState: state.tvShowList.loadingState
     }
 }
 

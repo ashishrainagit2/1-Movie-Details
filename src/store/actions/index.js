@@ -6,5 +6,6 @@ export {
 
 export {
     initTvShowList,
-    getMoreTvInfo
+    getMoreTvInfo,
+    changeLoadingState
 } from './Tvshowlist';

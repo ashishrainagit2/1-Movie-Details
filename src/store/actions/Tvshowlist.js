@@ -21,9 +21,15 @@ export const getMoreTvInfo = (id) => {
     }
 }
 
+export const changeLoadingState = () => {
+    return {
+        type : actionTypes.CHANGE_LOADING_STATE,
+    }
+}
+
+
 export const initTvShowList = (no) => {
-    console.log("no is" , no);
-    no++;
+       no++;
     return dispatch => {
         let url = `https://api.themoviedb.org/3/tv/popular?api_key=c18a8c63bee9d66665a486a624d48177&language=en-US&page=${no}`;
         axios.get( url)

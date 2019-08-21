@@ -18,7 +18,13 @@ class Movielist extends Component {
             const pageOffset = window.pageYOffset + window.innerHeight;
             const bottonOffset = 10;
             if(pageOffset > lastElementOffset - bottonOffset){
-                this.props.onInitMovielist(this.props.pageNumber);
+                counter++;
+                if(this.props.pageNumber == counter){
+                    this.props.onInitMovielist(this.props.pageNumber);
+                } else {
+                    counter--;
+                }
+                
             }
         })
     } 
@@ -85,6 +91,8 @@ class Movielist extends Component {
         )
     }
 }
+
+let counter = 0; 
 
 const mapStateToProps = state => {
     return {

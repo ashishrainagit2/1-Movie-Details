@@ -7,20 +7,29 @@ import { updateObject } from '../utility';
         totalPages : 0,
         tvShows : [],
         activeMovie : null,
-        modalStatus : false
+        modalStatus : false,
+        loadingState : true,
     }
 
    const addTvShowList = (state , action) => {
        state = {
            ...state,
            pageNumber : state.pageNumber + 1,
-           tvShows : [...state.tvShows , ...action.tvshowlist.results]
+           tvShows : [...state.tvShows , ...action.tvshowlist.results],
+           loadingState : !state.loadingState
        }
         return state;
     }
 
+    const changeLoadingState = (state , action) => {
+        state = {
+            ...state,
+            loadingState : false
+        }
+        return state ;
+    }
+
     const getMoreTvShowInfo = (state , action) => {
-        console.log("action id in reducer" , action.id)
         let newModalStatus = !(state.ModalStatus);
         return updateObject(
             state , {
@@ -34,6 +43,7 @@ import { updateObject } from '../utility';
         switch(action.type){
             case actionTypes.SET_TVSHOW_LIST: return addTvShowList(state , action);
             case actionTypes.GET_MORE_TVSHOW_INFO: return getMoreTvShowInfo(state , action);
+            case actionTypes.CHANGE_LOADING_STATE: return changeLoadingState(state , action);
             default : return state;
         }
     }
