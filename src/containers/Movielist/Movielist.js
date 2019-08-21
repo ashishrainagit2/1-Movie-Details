@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import Movieinfo from '../../components/Movieinfo/Movieinfo';
 import classes from './Movielist.module.css';
 import Modal from '../../components/UIcomponents/Modal/Modal';
+import Filter from '../../components/Filter/Filter';
 
 
 class Movielist extends Component {
@@ -16,7 +17,7 @@ class Movielist extends Component {
             const lastElement = document.querySelector('header + div > div > div:last-child');
             const lastElementOffset = lastElement.offsetTop + lastElement.clientHeight;
             const pageOffset = window.pageYOffset + window.innerHeight;
-            const bottonOffset = 10;
+            const bottonOffset = 40;
             if(pageOffset > lastElementOffset - bottonOffset){
                 counter++;
                 if(this.props.pageNumber == counter){
@@ -82,6 +83,7 @@ class Movielist extends Component {
                     <Modal show={this.props.modalStatus} modalClose={this.props.onClickMovieBox}>
                         {modalContent}
                     </Modal>
+                    <Filter />
                     <Movieinfo list={this.props.movielist} moreInfo={ this.props.onClickMovieBox}/>
                     {/* <div className={classes.LoadMore}>
                         <span onClick={() => this.props.onInitMovielist(this.props.page)}>Load More ...</span>
