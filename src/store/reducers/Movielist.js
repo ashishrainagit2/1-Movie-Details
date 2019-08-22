@@ -3,13 +3,15 @@ import { updateObject } from '../utility';
 
 const initialState = {
     Movielist : [],
+    initialMovieList : [],
     page : null,
     ModalStatus : false,
     activeMovie : null,
     pageNumber : 0,
     totalPages : null,
     scrolling : false,
-    ratingFilter : ['HIGHEST RATED' , 'LOWEST RATED' ]
+    ratingFilter : ['RATED', 'HIGHEST RATED' , 'LOWEST RATED' ],
+    selectedFilter : "RATED"
 }
 
 const getMoreMovieInfo = (state , action) =>  {
@@ -23,11 +25,12 @@ const getMoreMovieInfo = (state , action) =>  {
 }
 
 const addMovieList = (state , action) => {
-    const newMovieList = [...state.Movielist , ...action.movielist.results]
+    const newMovieList = [...state.Movielist , ...action.movielist.results];
     return updateObject( state, {
         Movielist: newMovieList,
         pageNumber: state.pageNumber + 1,
-        page : action.movielist.page
+        page : action.movielist.page,
+        initialMovieList : [...newMovieList]
     } );
 }
 
@@ -36,8 +39,24 @@ const getMoreMovieCards = (state , action) => {
 }
 
 const filterMovieData =  (state, action) => {
-    console.log('filter movie data in reducer');
-    return state;
+    let newMovieList = [...state.Movielist];
+    
+    if(action.filterType == "LOWEST RATED"){
+        newMovieList.sort(function(a , b){
+            return (a.popularity - b.popularity)
+        })
+    } else if (action.filterType == "HIGHEST RATED"){
+        newMovieList.sort(function(a , b){
+            return (b.popularity - a.popularity)
+        })
+    } else {
+        newMovieList = [...state.initialMovieList]
+    }
+    
+    return updateObject( state, {
+        Movielist: newMovieList,
+        selectedFilter : action.filterType
+    } );
 }
 
 const reducer = ( state = initialState, action ) => {

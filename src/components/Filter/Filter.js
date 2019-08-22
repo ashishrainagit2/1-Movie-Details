@@ -4,18 +4,17 @@ import classes from './Filter.module.css';
 
 const filter = (props) => {
     let optionBox =  [];
-    console.log(props);
-    if(props.selectedFilter != null){
-         optionBox = (props.selectedFilter).map( (value , i) => {
+    if(props.selectedFilters != null){
+         optionBox = (props.selectedFilters).map( (value , i) => {
             return (
-                <option value={value} key={i}> {value}</option> 
+                <option value={value} key={i} selected={props.selected == value}  > {value}</option> 
             )
         })
     }
     
     return  (
         <div className={classes.FilterWrapper}>
-            <select onChange={props.onfilterApply()}>
+            <select onChange={(event) => props.onfilterApply(event)}>
                 {optionBox}
             </select>
         </div>

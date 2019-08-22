@@ -80,7 +80,7 @@ class Movielist extends Component {
         return (
             <React.Fragment>
                 <div className={classes.filterWrapper}>
-                        <Filter selectedFilter = {this.props.filter} onfilterApply={() => this.props.onFilterApplyHandler(e)}/>
+                        <Filter selectedFilters = {this.props.filter} onfilterApply={(event) => this.props.onFilterApplyHandler(event)} selected={this.props.selectedFilter}/>
                 </div>
                 <div className={classes.Movielist}>
                     <div className={classes.MovielistWrapper}>
@@ -109,7 +109,8 @@ const mapStateToProps = state => {
         pageNumber : state.movieList.pageNumber,
         totalPages : state.movieList.totalPages,
         scrolling : state.movieList.scrolling,
-        filter : state.movieList.ratingFilter
+        filter : state.movieList.ratingFilter,
+        selectedFilter : state.movieList.selectedFilter
     };
 }
 
@@ -118,7 +119,7 @@ const mapDispatchToProps = dispatch => {
         onInitMovielist: (no) => dispatch(actions.initMovielist(no)),
         onClickMovieBox : (id) => dispatch(actions.getMoreMovieInfo(id)),
         onLoadMore : () => dispatch(actions.getMoreMovies()),
-        onFilterApplyHandler : (e) => dispatch(actions.filterMovies(e))
+        onFilterApplyHandler : (event) => dispatch(actions.filterMovies(event))
     }
 }
 

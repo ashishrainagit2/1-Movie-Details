@@ -8,6 +8,7 @@ export const setMovieList = ( movielist ) => {
         movielist: movielist
     };
 };
+
 export const fetchMovieListFailed = () => {
     return {
         type: actionTypes.FETCH_MOVIELIST_FAILED
@@ -41,11 +42,9 @@ export const initMovielist = (no) => {
     };
 };
 
-export const filterMovies = (e) => {
-    console.log("inside filter action");
-    console.log(e);
+export const filterMovies = (event) => {
     return {
         type : actionTypes.FILTER_MOVIE_DATA,
-        filterType: e.target.value
+        filterType: event.target.value
     }
 }
