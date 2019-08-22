@@ -1,0 +1,18 @@
+.FilterWrapper {
+        position: relative;
+        font-family: Arial;
+}
+
+.FilterWrapper select  {
+    height: 30px;
+    width: 120px;
+    background: transparent;
+    border-radius: 12px;
+    background: white;
+}
+
+.FilterWrapper select option:hover {
+    height: 30px;
+    width: 120px;
+    background: red;
+}

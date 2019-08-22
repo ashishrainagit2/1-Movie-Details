@@ -14,7 +14,7 @@ class Movielist extends Component {
         this.props.onInitMovielist(this.props.pageNumber);
         // this.props.scrollListner(this.props.pageNumber,this.props.totalPages,this.props.scrolling);
         window.addEventListener('scroll', (e) => {
-            const lastElement = document.querySelector('header + div > div > div:last-child');
+            const lastElement = document.querySelector('header + div + div > div > div:last-child');
             const lastElementOffset = lastElement.offsetTop + lastElement.clientHeight;
             const pageOffset = window.pageYOffset + window.innerHeight;
             const bottonOffset = 40;
@@ -78,18 +78,22 @@ class Movielist extends Component {
         }
 
         return (
-            <div className={classes.Movielist}>
-                <div className={classes.MovielistWrapper}>
-                    <Modal show={this.props.modalStatus} modalClose={this.props.onClickMovieBox}>
-                        {modalContent}
-                    </Modal>
-                    <Filter />
-                    <Movieinfo list={this.props.movielist} moreInfo={ this.props.onClickMovieBox}/>
-                    {/* <div className={classes.LoadMore}>
-                        <span onClick={() => this.props.onInitMovielist(this.props.page)}>Load More ...</span>
-                    </div> */}
+            <React.Fragment>
+                <div className={classes.filterWrapper}>
+                        <Filter selectedFilter = {this.props.filter} onfilterApply={() => this.props.onFilterApplyHandler(e)}/>
                 </div>
-            </div>
+                <div className={classes.Movielist}>
+                    <div className={classes.MovielistWrapper}>
+                        <Modal show={this.props.modalStatus} modalClose={this.props.onClickMovieBox}>
+                            {modalContent}
+                        </Modal>
+                        <Movieinfo list={this.props.movielist} moreInfo={ this.props.onClickMovieBox}/>
+                        {/* <div className={classes.LoadMore}>
+                            <span onClick={() => this.props.onInitMovielist(this.props.page)}>Load More ...</span>
+                        </div> */}
+                    </div>
+                </div>
+            </React.Fragment>
         )
     }
 }
@@ -104,7 +108,8 @@ const mapStateToProps = state => {
         activeMovie : state.movieList.activeMovie,
         pageNumber : state.movieList.pageNumber,
         totalPages : state.movieList.totalPages,
-        scrolling : state.movieList.scrolling
+        scrolling : state.movieList.scrolling,
+        filter : state.movieList.ratingFilter
     };
 }
 
@@ -112,7 +117,8 @@ const mapDispatchToProps = dispatch => {
     return {
         onInitMovielist: (no) => dispatch(actions.initMovielist(no)),
         onClickMovieBox : (id) => dispatch(actions.getMoreMovieInfo(id)),
-        onLoadMore : () => dispatch(actions.getMoreMovies())
+        onLoadMore : () => dispatch(actions.getMoreMovies()),
+        onFilterApplyHandler : (e) => dispatch(actions.filterMovies(e))
     }
 }
 

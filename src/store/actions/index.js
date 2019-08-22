@@ -1,7 +1,8 @@
 export {
     initMovielist,
     getMoreMovieInfo,
-    getMoreMovies
+    getMoreMovies,
+    filterMovies
 } from './Movielist';
 
 export {

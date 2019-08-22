@@ -40,3 +40,12 @@ export const initMovielist = (no) => {
             } );
     };
 };
+
+export const filterMovies = (e) => {
+    console.log("inside filter action");
+    console.log(e);
+    return {
+        type : actionTypes.FILTER_MOVIE_DATA,
+        filterType: e.target.value
+    }
+}
