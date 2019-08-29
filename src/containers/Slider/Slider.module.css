@@ -6,18 +6,16 @@
     overflow: hidden;
     white-space: nowrap;
   }
-  
-  .slider-wrapper {
+
+
+  .sliderWrapper {
     position: relative;
     height: 100%;
     width: 100%;
   }
   
-  .slide {
-    display: inline-block;
-    height: 100%;
-    width: 100%;
-  }
+ 
+  
   
   .arrow {
     height: 50px;
@@ -47,7 +45,7 @@
     color: #fff;
   }
   
-  .fa-arrow-right:before, .fa-arrow-left:before {
+ 
+  .faarrowright:before, .faarrowleft:before {
     color: #222
   }
-  

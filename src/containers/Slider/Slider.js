@@ -1,10 +1,10 @@
-import React, { Component } from 'react'
-import Slide from '../../components/Slide/Slide'
-import LeftArrow from '../../components/Arrows/Leftarrow/Leftarrow';
-import RightArrow from '../../components/Arrows/Rightarrow/Rightarrow';
 
-export default class Slider extends Component {
+import React , {Component} from 'react';
+import classes from './Slider.module.css';
+import './abc.css';
 
+class Slider extends Component {
+  
     state = {
       images: [
         "https://s3.us-east-2.amazonaws.com/dzuz14/thumbnails/aurora.jpg",
@@ -20,10 +20,15 @@ export default class Slider extends Component {
       translateValue: 0
     }
 
-
-  goToPrevSlide = () => {
-
-  }
+    goToPrevSlide = () => {
+      if(this.state.currentIndex === 0)
+        return;
+      
+      this.setState(prevState => ({
+        currentIndex: prevState.currentIndex - 1,
+        translateValue: prevState.translateValue + this.slideWidth()
+      }))
+    }
 
   goToNextSlide = () => {
     // Exiting the method early if we are at the end of the images array.
@@ -42,16 +47,15 @@ export default class Slider extends Component {
       translateValue: prevState.translateValue + -(this.slideWidth())
     }));
   }
-
   slideWidth = () => {
      return document.querySelector('.slide').clientWidth
   }
 
   render() {
     return (
-      <div className="slider">
-<p>This is for testing slider!!!</p>
-        <div className="slider-wrapper"
+      <div className={classes.slider}>
+
+        <div className={classes.sliderWrapper}
           style={{
             transform: `translateX(${this.state.translateValue}px)`,
             transition: 'transform ease-out 0.45s'
@@ -74,3 +78,34 @@ export default class Slider extends Component {
     );
   }
 }
+
+
+const Slide = ({ image }) => {
+  const styles = {
+    backgroundImage: `url(${image})`,
+    backgroundSize: 'cover',
+    backgroundRepeat: 'no-repeat',
+    backgroundPosition: '50% 60%'
+  }
+  return <div className="slide" style={styles}></div>
+}
+
+
+const LeftArrow = (props) => {
+  return (
+    <div className={ `${classes.backArrow} ${classes.arrow}`} onClick={props.goToPrevSlide}>
+      <i className="fa  fa-2x fa-arrow-left" aria-hidden="true"></i>
+    </div>
+  );
+}
+
+
+const RightArrow = (props) => {
+  return (
+    <div className={`${classes.nextArrow} ${classes.arrow}`} onClick={props.goToNextSlide}>
+      <i className="fa fa-2x fa-arrow-right"aria-hidden="true"></i>
+    </div>
+  );
+}
+
+export default Slider;
