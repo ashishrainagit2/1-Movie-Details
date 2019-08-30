@@ -1,0 +1,13 @@
+.Simplelink_wrapper {
+    margin: 5px;
+    padding: 5px;
+}
+
+.Simplelink {
+    text-decoration: none;
+    color: white;
+}
+
+.Simplelink  p{
+    color: white;
+}
