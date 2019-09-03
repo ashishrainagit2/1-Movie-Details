@@ -1,0 +1,25 @@
+.ContactusWrapper {
+  
+}
+
+.contactusContent {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    grid-gap: 10px;
+
+}
+.Contactus {
+    border: 1px solid grey;
+}
+
+.contactusText {
+    padding: 10PX;
+    margin: 20px;
+}
+
+.resisterMessage {
+    height: 400px;
+    padding: 10px;
+    margin: 20px;
+    margin-top: 50px;
+}

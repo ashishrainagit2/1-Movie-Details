@@ -1,4 +1,4 @@
-import react from 'react';
+import React from 'react';
 import classes from './Input.module.css';
 
 const input = (props) => {
@@ -25,7 +25,7 @@ const input = (props) => {
             onChange={props.changed}/>;
         break;
         case ('select'):
-            inputElement = (
+        inputElement = (
                     <select
                     className={inputClasses.join(' ')}
                     value={props.value}
@@ -38,6 +38,16 @@ const input = (props) => {
                     </select>
             );
             break;
+            case ('radio'):
+                inputElement = (
+                            <input
+                            className={inputClasses.join(' ')}
+                            value={props.value}
+                            onChange={props.changed}>
+                            {props.value}
+                            </input>
+                    );
+                    break;
             default :
                 inputElement = <input
                     className={inputClasses.join(' ')}
