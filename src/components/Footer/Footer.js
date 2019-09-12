@@ -15,7 +15,7 @@ const footer = (props) => {
                     <div>
                         <Simpleheading name="MORE PAGES"/>
                         <Simplelink name="contact-us"/>
-                        <Simplelink name="hello"/>
+                        <Simplelink name="errors"/>
                         <Simplelink name="hello"/>
                         <Simplelink name="hello"/>
                     </div>

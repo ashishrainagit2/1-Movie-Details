@@ -7,6 +7,7 @@ import Homepage from './containers/Homepage/Homepage';
 import Slider from './containers/Slider/Slider';
 import { Route, Switch } from 'react-router-dom';
 import Footer from './components/Footer/Footer';
+import ErrorPage from './components/ErrorPage/ErrorPage';
 import Contactus from './containers/Contactus/Contactus';
 
 class App extends Component {
@@ -20,6 +21,7 @@ class App extends Component {
             <Route path="/movies"  component={Movielist} />
             <Route path="/slidertest"  component={Slider} />
             <Route path="/contact-us"  component={Contactus} />
+            <Route path="/errors"  component={ErrorPage} />
             <Route path="/" exact component={Homepage} />
           </Switch>
           <Footer />
