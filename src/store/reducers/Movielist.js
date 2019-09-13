@@ -41,11 +41,11 @@ const getMoreMovieCards = (state , action) => {
 const filterMovieData =  (state, action) => {
     let newMovieList = [...state.Movielist];
     
-    if(action.filterType == "LOWEST RATED"){
+    if(action.filterType === "LOWEST RATED"){
         newMovieList.sort(function(a , b){
             return (a.popularity - b.popularity)
         })
-    } else if (action.filterType == "HIGHEST RATED"){
+    } else if (action.filterType === "HIGHEST RATED"){
         newMovieList.sort(function(a , b){
             return (b.popularity - a.popularity)
         })

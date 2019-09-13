@@ -2,6 +2,10 @@
     margin: 20px auto;
 }
 
+.Personal {
+    display: inline-block;
+}
+
 .MovielistWrapper {
     display: grid;
     grid-template-columns: repeat(2 , 1fr);

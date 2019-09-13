@@ -4,40 +4,47 @@ import { connect } from 'react-redux';
 import Movieinfo from '../../components/Movieinfo/Movieinfo';
 import classes from './Tvshowlist.module.css';
 import Modal from '../../components/UIcomponents/Modal/Modal';
-
-
-
-
+import Watchinglist from '../../components/Watchinglist/Watchinglist';
+import Favouritelist from '../../components/Favouritelist/Favouritelist';
 class Tvshowlist extends Component {
-            
-        componentDidMount(){
-            this.props.onInitTvShowList(this.props.pageNumber);  
+    constructor(props){
+        super(props);
+        console.log("[Tvshowlist] Constructor ");
+    }
 
-            window.addEventListener('scroll', (e) => {
-                const lastElement = document.querySelector('header + div > div > div:last-child');
-                const lastElementOffset = lastElement.offsetTop + lastElement.clientHeight;
-                const pageOffset = window.pageYOffset + window.innerHeight;
-                const bottonOffset = 30;
-                if((pageOffset > lastElementOffset - bottonOffset)){
-                            counter++;
-                            if(this.props.pageNumber == counter){
-                                this.props.onInitTvShowList(this.props.pageNumber);
-                            }else {
-                                counter--;
-                            }
-                            
-                            
-                }
-            })
-            
-            
-        }
+    state = {
+        
+    }
 
-        render (){
-            let modalContent = null;
+    static getDerivedStateFromProps(props , state){
+        console.log("[Tvshowlist] getDerivedStateFromProps");
+        return state;
+    }
+    componentDidMount(){
+        console.log("[Tvshowlist] componentDidMount");
+        this.props.onInitTvShowList(this.props.pageNumber);  
+        window.addEventListener('scroll', (e) => {
+            const lastElement = document.querySelector('header + div > div > div:last-child');
+            const lastElementOffset = lastElement.offsetTop + lastElement.clientHeight;
+            const pageOffset = window.pageYOffset + window.innerHeight;
+            const bottonOffset = 30;
+            if((pageOffset > lastElementOffset - bottonOffset)){
+                        counter++;
+                        if(this.props.pageNumber === counter){
+                            this.props.onInitTvShowList(this.props.pageNumber);
+                        }else {
+                            counter--;
+                        }
+            }
+        })
+    }
+
+    render (){
+        console.log("[TvShowList] render");
+        let modalContent = null;
         if(this.props.tvShows != null){
-             modalContent = (this.props.tvShows).map((value, i) => {
-                 if(this.props.activeMovie == value.id){
+            modalContent = (this.props.tvShows).map((value, i) => {
+                if(this.props.activeMovie === value.id){
                     return (
                         <div className={classes.ModalContent}>
                             <div className={classes.ModalImage}>
@@ -75,24 +82,26 @@ class Tvshowlist extends Component {
                             </div>
                         </div>
                     )
-                 }
+                }
                 
             })
         }
-            return (
-                <div className={classes.Movielist}>
-                    <div className={classes.MovielistWrapper}>
-                        <Modal show={this.props.modalStatus} modalClose={this.props.onClickTvBox}>
-                            {modalContent}
-                        </Modal>
-                        <Movieinfo list={this.props.tvShows} moreInfo={ this.props.onClickTvBox}/>
-                        {/* <div className={classes.LoadMore}>
-                            <span onClick={() => this.props.onInitMovielist(this.props.page)}>Load More ...</span>
-                        </div> */}
-                    </div>
+        return (
+            <div className={classes.Movielist}>
+                <Watchinglist/>
+                <Favouritelist/>
+                <div className={classes.MovielistWrapper}>
+                    <Modal show={this.props.modalStatus} modalClose={this.props.onClickTvBox}>
+                        {modalContent}
+                    </Modal>
+                    <Movieinfo list={this.props.tvShows} moreInfo={ this.props.onClickTvBox}/>
+                    {/* <div className={classes.LoadMore}>
+                        <span onClick={() => this.props.onInitMovielist(this.props.page)}>Load More ...</span>
+                    </div> */}
                 </div>
-            )
-        }
+            </div>
+        )
+    }
 }
 
 let counter = 0; 

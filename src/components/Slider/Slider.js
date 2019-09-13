@@ -1,6 +1,5 @@
 import React from 'react';
 import classes from './Slider.module.css'
-import { directive } from '@babel/types';
 
 const slider = (props) => {
 

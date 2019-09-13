@@ -1,6 +1,5 @@
 import React , {Component} from 'react';
 import * as actions from '../../store/actions/index';
-import axios from '../../axios-orders';
 import { connect } from 'react-redux';
 import Movieinfo from '../../components/Movieinfo/Movieinfo';
 import classes from './Movielist.module.css';
@@ -20,7 +19,7 @@ class Movielist extends Component {
             const bottonOffset = 40;
             if(pageOffset > lastElementOffset - bottonOffset){
                 counter++;
-                if(this.props.pageNumber == counter){
+                if(this.props.pageNumber === counter){
                     this.props.onInitMovielist(this.props.pageNumber);
                 } else {
                     counter--;
@@ -34,7 +33,7 @@ class Movielist extends Component {
         let modalContent = null;
         if(this.props.movielist != null){
              modalContent = (this.props.movielist).map((value, i) => {
-                 if(this.props.activeMovie == value.id){
+                 if(this.props.activeMovie === value.id){
                     return (
                         <div className={classes.ModalContent}>
                             <div className={classes.ModalImage}>
