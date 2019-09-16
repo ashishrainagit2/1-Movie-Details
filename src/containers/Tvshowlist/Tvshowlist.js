@@ -6,6 +6,7 @@ import classes from './Tvshowlist.module.css';
 import Modal from '../../components/UIcomponents/Modal/Modal';
 import Watchinglist from '../../components/Watchinglist/Watchinglist';
 import Favouritelist from '../../components/Favouritelist/Favouritelist';
+
 class Tvshowlist extends Component {
     constructor(props){
         super(props);
@@ -13,11 +14,15 @@ class Tvshowlist extends Component {
     }
 
     state = {
-        
+        // favMovies : [
+        //     { id : 'agag12' , name : "first movie", priority: 1},
+        //     { id : 'ahah23' , name : "second movie", priority: 2},
+        //     { id : 'ijkj77' , name : "third movie", priority: 3},
+        // ]
     }
 
     static getDerivedStateFromProps(props , state){
-        console.log("[Tvshowlist] getDerivedStateFromProps");
+        console.log("[Tvshowlist] getDerivedStateFromProps1");
         return state;
     }
     componentDidMount(){
@@ -38,6 +43,15 @@ class Tvshowlist extends Component {
             }
         })
     }
+
+    shouldComponentUpdate(nextProps, nextState) {
+        console.log('[Tvshowlist.js] shouldComponentUpdate');
+        return true;
+      }
+    
+      componentDidUpdate() {
+        console.log('[Tvshowlist.js] componentDidUpdate');
+      }
 
     render (){
         console.log("[TvShowList] render");
@@ -88,8 +102,8 @@ class Tvshowlist extends Component {
         }
         return (
             <div className={classes.Movielist}>
-                <Watchinglist/>
-                <Favouritelist/>
+                <Watchinglist />
+                <Favouritelist movienames={"favmovie"}/>
                 <div className={classes.MovielistWrapper}>
                     <Modal show={this.props.modalStatus} modalClose={this.props.onClickTvBox}>
                         {modalContent}
