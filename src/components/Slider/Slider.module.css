@@ -1,13 +1,13 @@
 .Slider {
     width: 1368px;
-	height: 513px;
+	height: 700px;
 	overflow: hidden;
 	border: 10px solid #666;
 }
 
 .Slide {
     width : 5472px;
-	height: 513px;
+	height: 700px;
 	overflow: hidden;
 	
 	/* animation duration: 16s : 5x ~3s display image + 5x ~0.2s slide */

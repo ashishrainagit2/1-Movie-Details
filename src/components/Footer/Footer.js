@@ -7,7 +7,6 @@ import Simplelink from '../Simplelink/Simplelink';
 const footer = (props) => {
     return (
         <div className={classes.Footer}>
-
                 <div>
 
                 </div>
@@ -16,15 +15,15 @@ const footer = (props) => {
                         <Simpleheading name="MORE PAGES"/>
                         <Simplelink name="contact-us"/>
                         <Simplelink name="errors"/>
-                        <Simplelink name="hello"/>
-                        <Simplelink name="hello"/>
+                        <Simplelink name="Lorem Ipsum"/>
+                        <Simplelink name="Lorem Ipsum"/>
                     </div>
                     <div>
-                        <Simpleheading name="Heading"/>
-                        <Simplelink name="hello"/>
-                        <Simplelink name="hello"/>
-                        <Simplelink name="hello"/>
-                        <Simplelink name="hello"/>
+                        <Simpleheading name="Lorem Ipsum"/>
+                        <Simplelink name="Lorem Ipsum"/>
+                        <Simplelink name="Lorem Ipsum"/>
+                        <Simplelink name="Lorem Ipsum"/>
+                        <Simplelink name="Lorem Ipsum"/>
                     </div>
                 
                 </div>
@@ -32,17 +31,17 @@ const footer = (props) => {
                 <div>
                     <div>
                         <Simpleheading name="Heading"/>
-                        <Simplelink name="hello"/>
-                        <Simplelink name="hello"/>
-                        <Simplelink name="hello"/>
-                        <Simplelink name="hello"/>
+                        <Simplelink name="Lorem Ipsum"/>
+                        <Simplelink name="Lorem Ipsum"/>
+                        <Simplelink name="Lorem Ipsum"/>
+                        <Simplelink name="Lorem Ipsum"/>
                     </div>
                     <div>
-                        <Simpleheading name="Heading"/>
-                        <Simplelink name="hello"/>
-                        <Simplelink name="hello"/>
-                        <Simplelink name="hello"/>
-                        <Simplelink name="hello"/>
+                        <Simpleheading name="Lorem Ipsum"/>
+                        <Simplelink name="Lorem Ipsum"/>
+                        <Simplelink name="Lorem Ipsum"/>
+                        <Simplelink name="Lorem Ipsum"/>
+                        <Simplelink name="Lorem Ipsumo"/>
                     </div>
                 </div>
 

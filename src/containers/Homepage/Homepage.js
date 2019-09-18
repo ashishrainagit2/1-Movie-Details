@@ -1,6 +1,8 @@
 import React , { useState, useEffect } from 'react';
 import axios from 'axios';
-import Slider from '../../components/Slider/Slider';
+import DisplayCards from '../../components/DisplayCards/DisplayCards';
+import ActorCards from '../../components/ActorCards/ActorCards';
+import classes from './Homepage.module.css';
 
 const Homepage = (props) => {
    const [HomepageState , HomePageStateHandler] = useState({
@@ -16,8 +18,36 @@ const Homepage = (props) => {
         personHits : []
     })
 
+    //Getting Trending Movies from Api and Storing them
     useEffect(() => {
-        console.log("[Homepage] useEffect");
+        async function fetchData(){
+            const result = await axios(
+                'https://api.themoviedb.org/3/trending/movie/day?api_key=c18a8c63bee9d66665a486a624d48177',
+            )
+            HomePageStateHandler({
+                HomePageStatus : true,
+                hits : result.data.results.splice(0 , 4)
+                })
+        }
+        fetchData();
+    }, [])
+
+    //Getting Trending TV shows from Api and Storing them
+    useEffect(() => {
+        async function fetchData(){
+            const result = await axios(
+                'https://api.themoviedb.org/3/trending/tv/day?api_key=c18a8c63bee9d66665a486a624d48177',
+            )
+            eventStateHandler({
+                EventStatus : true,
+                eventHits : result.data.results.splice(0 , 4)
+                })
+        }
+        fetchData();
+    } , [])
+
+    //Getting Trending Personalities from Api and Storing them
+    useEffect(() => {
         async function fetchData(){
             const result = await axios(
                 'https://api.themoviedb.org/3/trending/person/day?api_key=c18a8c63bee9d66665a486a624d48177',
@@ -26,65 +56,33 @@ const Homepage = (props) => {
                 personStatus : true,
                 personHits : result.data.results
                 })
-            console.log("result data3", result.data.results);
         }
         fetchData();
     } , [])
 
-    
-    useEffect(() => {
-        async function fetchData(){
-            const result = await axios(
-                'https://api.themoviedb.org/3/trending/tv/day?api_key=c18a8c63bee9d66665a486a624d48177',
-            )
-            eventStateHandler({
-                EventStatus : true,
-                eventHits : result.data.results
-                })
-        }
-        fetchData();
-    } , [])
-
-    useEffect(() => {
-        async function fetchData(){
-            const result = await axios(
-                'https://api.themoviedb.org/3/trending/movie/day?api_key=c18a8c63bee9d66665a486a624d48177',
-            )
-            HomePageStateHandler({
-                HomePageStatus : true,
-                hits : result.data.results
-                })
-            // console.log("result data", result.data.results);
-        }
-        fetchData();
-    }, [])
-
-    const images =  HomepageState.hits.map((item, i) => (
-            <img key={i} src={"https://image.tmdb.org/t/p/w342" + item.poster_path  } /> 
-    ))
-
-    const imagesTv =  eventState.eventHits.map((item, i) => (
-        <img key={i} src={"https://image.tmdb.org/t/p/w342" + item.poster_path} /> 
-    ))
-
-    const imagesPerson =  personState.personHits.map((item, i) => (
-        <img key={i} src={"https://image.tmdb.org/t/p/w342" + item.profile_path} /> 
-    ))
-    
     return (
-       <div>
-           <Slider>
-                {images}
-           </Slider>
+       <div className={classes.Homepage}>
 
-           <Slider>
-                {imagesTv}
-           </Slider>
+           <div className={classes.TrendingMovies}>
+                <div className={classes.HeadingWrapper}>
+                    <h2>Top Trending Movies Based On User Votes</h2>
+                </div>
+                 <DisplayCards list={HomepageState.hits} imagePath={"https://image.tmdb.org/t/p/w300"}/>
+           </div>
 
-           <Slider>
-                {imagesPerson}
-           </Slider>
-            
+            <div className={classes.TrendingEvents}>
+                <div className={classes.HeadingWrapper}>
+                    <h2> Top Trending Series Based On User Voting</h2>
+                </div>
+                <DisplayCards list={eventState.eventHits} imagePath={"https://image.tmdb.org/t/p/w300"}/>
+            </div>
+
+            <div className={classes.TrendingPersons}>
+                <div className={classes.HeadingWrapper}>
+                    <h2>Actors In LimeLight</h2>
+                    <ActorCards list={personState.personHits}/>
+                </div>
+            </div>
        </div>
     )
 }

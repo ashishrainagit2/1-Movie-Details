@@ -1,4 +1,33 @@
 .Homepage {
     text-align: center;
+    background-color: white;
+}
+
+.TrendingMovies {
+    width: 100%;
+    overflow: hidden;
+    border-bottom: 2px solid #800000;
+    margin-bottom: 10px;
+    padding-bottom: 30px;
+}
+
+.TrendingEvents {
+    width: 100%;
+    overflow: hidden;
+    border-bottom: 2px solid #800000;
+    margin-bottom: 10px;
+    padding-bottom: 30px;
     
+}
+
+.TrendingPersons{
+    width: 100%;
+    overflow: hidden;
+    border-bottom: 2px solid #800000;
+    margin-bottom: 10px;
+    padding-bottom: 30px;
+}
+
+.HeadingWrapper{
+
 }
