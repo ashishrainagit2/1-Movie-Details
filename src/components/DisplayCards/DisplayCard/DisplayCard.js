@@ -12,7 +12,7 @@ const displayCard = (props) => {
             </div>
             <div className={classes.DetailsWrapper}>
                 <div>
-                    <p >{props.title}</p>
+                    {/* <p >{props.title}</p> */}
                     <div className={classes.Info1}>
                         <span className={classes.ReleaseDate}>Released On: {props.releaseDate}</span>
                         <span className={classes.AvgVote}>Avg Vote: {props.avgVote}</span>
