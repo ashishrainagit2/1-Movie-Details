@@ -67,7 +67,8 @@ const Homepage = (props) => {
                 <div className={classes.HeadingWrapper}>
                     <h2>Top Trending Movies Based On User Votes</h2>
                 </div>
-                 <DisplayCards list={HomepageState.hits} imagePath={"https://image.tmdb.org/t/p/w300"}/>
+                {HomepageState.hits.length  ? <DisplayCards list={HomepageState.hits} imagePath={"https://image.tmdb.org/t/p/w300"}/> : <p>Loading...</p>}
+                 
            </div>
 
             <div className={classes.TrendingEvents}>
