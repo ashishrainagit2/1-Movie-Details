@@ -1,11 +1,10 @@
 .ActorCard {
     display: inline-block;
     margin: 10px;
-    border: 1px solid grey;
     padding: 10px;
     border-radius: 5px;
-    background: #800000;
-    color: white;
+    background: #F5F5F5;
+    color: black;
     font-weight: 800;
 }
 

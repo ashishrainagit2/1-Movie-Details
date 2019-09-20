@@ -29,11 +29,11 @@ export const getMoreMovies = () => {
 }
 
 export const initMovielist = (no) => {
-        no++;
+    no = no + 1;
     return dispatch => {
-        let url = `https://api.themoviedb.org/3/movie/popular?api_key=c18a8c63bee9d66665a486a624d48177&language=en-US&page=${no}`;
-        axios.get( url)
+        axios.get("popular?api_key=c18a8c63bee9d66665a486a624d48177&language=en-US&page=" + no)
             .then( response => {
+                console.log("response ", response)
                dispatch(setMovieList(response.data));
             } )
             .catch( error => {

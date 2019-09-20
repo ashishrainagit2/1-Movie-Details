@@ -1,11 +1,9 @@
 import React from 'react';
-import classes from './DisplayCard.module.css';
+import classes from './MovieDisplayCard.module.css';
 
 const displayCard = (props) => {
-
-    console.log('eee', props);
     return (
-        <div key={props.id} className={classes.DisplayCards} onClick={(id) =>props.moreInfo(props.id)}>
+        <div key={props.id} className={classes.DisplayCards} onClick={(id) => props.moreInfo(props.id)}>
             <div className={classes.DisplayContent}>
             <div className={classes.ImageWrapper}>
                 <img src={ props.imagePath + props.posterPath} alt={props.title}/>

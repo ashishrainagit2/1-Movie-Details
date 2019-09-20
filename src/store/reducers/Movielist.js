@@ -29,8 +29,7 @@ const addMovieList = (state , action) => {
     return updateObject( state, {
         Movielist: newMovieList,
         pageNumber: state.pageNumber + 1,
-        page : action.movielist.page,
-        initialMovieList : [...newMovieList]
+        page : action.movielist.page
     } );
 }
 

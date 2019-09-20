@@ -1,0 +1,23 @@
+.ModalContent {
+    display: grid;
+    grid-template-columns: repeat(2 , 1fr);
+}
+
+.ModalInfo {
+    border: 1px solid grey;
+}
+
+.ModalTitle {
+    color:#800000;
+}
+
+.infoLine {
+    text-align: left;
+}
+
+.MoreInfo {
+    text-align: right;
+    padding: 20px;
+    color: #800000;
+    cursor : pointer;
+}

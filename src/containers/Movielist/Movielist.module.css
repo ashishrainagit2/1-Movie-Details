@@ -8,29 +8,12 @@
    
 }
 
-.ModalContent {
-    display: grid;
-    grid-template-columns: repeat(2 , 1fr);
-}
-
-.ModalInfo {
-    border: 1px solid grey;
-}
-
-.ModalTitle {
-    color:#800000;
-}
-
-.infoLine {
-    text-align: left;
-}
-
 .LoadMore {
     grid-column: 1/5;
     margin: 10px;
     text-align: center;
     justify-content: center;
-    display: none;
+    margin-top: 30px;
 }
 
 .LoadMore span{
@@ -41,19 +24,17 @@
     border-radius: 5px;
     background-color: #800000;
     color: white;
+    font-weight: 800;
 }
 
 .LoadMore span:hover{ 
-  color : #000;
+  color : #800000;
+  background: #fff;
+  
   
 }
 
-.MoreInfo {
-    text-align: right;
-    padding: 20px;
-    color: #800000;
-    cursor : pointer;
-}
+
 
 @media only screen and (min-width: 768px) { 
     .MovielistWrapper {

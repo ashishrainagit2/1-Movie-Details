@@ -4,97 +4,70 @@ import { connect } from 'react-redux';
 import Movieinfo from '../../components/Movieinfo/Movieinfo';
 import classes from './Tvshowlist.module.css';
 import Modal from '../../components/UIcomponents/Modal/Modal';
-import Watchinglist from '../../components/Watchinglist/Watchinglist';
-import Favouritelist from '../../components/Favouritelist/Favouritelist';
+import EventDisplayCards from '../../components/DisplayCards/EventDisplayCards/EventDisplayCards';
+import Spinner from '../../components/UIcomponents/Spinner/Spinner';
+import EventModalContent from '../../components/ModalContent/EventModalContent';
 
 class Tvshowlist extends Component {
     constructor(props){
         super(props);
-        console.log("[Tvshowlist] Constructor ");
-    }
-
-    state = {
-        // favMovies : [
-        //     { id : 'agag12' , name : "first movie", priority: 1},
-        //     { id : 'ahah23' , name : "second movie", priority: 2},
-        //     { id : 'ijkj77' , name : "third movie", priority: 3},
-        // ]
     }
 
     static getDerivedStateFromProps(props , state){
-        console.log("[Tvshowlist] getDerivedStateFromProps1");
         return state;
     }
-    componentDidMount(){
-        console.log("[Tvshowlist] componentDidMount");
-        this.props.onInitTvShowList(this.props.pageNumber);  
-        window.addEventListener('scroll', (e) => {
+
+    scrollHandler(e){
             const lastElement = document.querySelector('header + div > div > div:last-child');
-            const lastElementOffset = lastElement.offsetTop + lastElement.clientHeight;
-            const pageOffset = window.pageYOffset + window.innerHeight;
-            const bottonOffset = 30;
-            if((pageOffset > lastElementOffset - bottonOffset)){
-                        counter++;
-                        if(this.props.pageNumber === counter){
-                            this.props.onInitTvShowList(this.props.pageNumber);
-                        }else {
-                            counter--;
-                        }
+            console.log("last elemet is ", lastElement)
+            if(lastElement != null){
+                const lastElementOffset = lastElement.offsetTop + lastElement.clientHeight;
+                const pageOffset = window.pageYOffset + window.innerHeight;
+                const bottonOffset = 30;
+                if((pageOffset > lastElementOffset - bottonOffset)){
+                    counter++;
+                    if(this.props.pageNumber === counter){
+                        this.props.onInitTvShowList(this.props.pageNumber);
+                    }else {
+                        counter--;
+                    }
+                }
             }
-        })
     }
 
+    componentDidMount(){
+        this.props.onInitTvShowList(this.props.pageNumber);  
+        window.addEventListener('scroll', (e) => this.scrollHandler())
+    }
+
+    componentWillUnmount(){
+        window.removeEventListener('scroll',(e) => this.scrollHandler())
+    }
+
+
     shouldComponentUpdate(nextProps, nextState) {
-        console.log('[Tvshowlist.js] shouldComponentUpdate');
         return true;
-      }
+    }
     
-      componentDidUpdate() {
-        console.log('[Tvshowlist.js] componentDidUpdate');
-      }
+    componentDidUpdate() {
+    }
 
     render (){
-        console.log("[TvShowList] render");
         let modalContent = null;
         if(this.props.tvShows != null){
             modalContent = (this.props.tvShows).map((value, i) => {
                 if(this.props.activeMovie === value.id){
                     return (
-                        <div className={classes.ModalContent}>
-                            <div className={classes.ModalImage}>
-                                <img src={ "https://image.tmdb.org/t/p/w400" + value.poster_path} alt={value.title}/>
-                            </div>
-                            <div className={classes.ModalInfo}>
-                                <div className={classes.infoLine}>
-                                        <span className={classes.ModalTitle}>Title: </span> 
-                                        <span>{value.title}</span>
-                                </div>
-                                <div className={classes.infoLine}>
-                                        <span className={classes.ModalTitle}>Vote Count:</span> 
-                                        <span>{value.vote_count}</span>
-                                </div>
-                                <div className={classes.infoLine}>
-                                        <span className={classes.ModalTitle}>Average Rating:</span> 
-                                        <span>{value.vote_average}</span>
-                                </div>
-                                <div className={classes.infoLine}>
-                                        <span className={classes.ModalTitle}>Popularity:</span> 
-                                        <span>{value.popularity}</span>
-                                </div>
-                                <div className={classes.infoLine}>
-                                        <span>{value.adult}</span>
-                                </div>
-                                <div className={classes.infoLine}>
-                                        <span className={classes.ModalTitle}>Release Date: </span> 
-                                        <span>{value.release_date}</span>
-                                </div>
-                                <div className={classes.infoLine}>
-                                        <span className={classes.ModalTitle}>Overview:</span> 
-                                        <div>{value.overview}</div>
-                                </div>
-                                <div className={classes.MoreInfo}>More Info</div>
-                            </div>
-                        </div>
+                       <EventModalContent 
+                       poster_path = {value.poster_path}
+                       title = {value.title}
+                       vote_count = {value.vote_count}
+                       vote_average = {value.vote_average}
+                       popularity = {value.popularity}
+                       adult = {value.adult}
+                       release_date = {value.release_date}
+                       overview = {value.overview}
+                       />
                     )
                 }
                 
@@ -102,16 +75,11 @@ class Tvshowlist extends Component {
         }
         return (
             <div className={classes.Movielist}>
-                <Watchinglist />
-                <Favouritelist movienames={"favmovie"}/>
                 <div className={classes.MovielistWrapper}>
                     <Modal show={this.props.modalStatus} modalClose={this.props.onClickTvBox}>
                         {modalContent}
                     </Modal>
-                    <Movieinfo list={this.props.tvShows} moreInfo={ this.props.onClickTvBox}/>
-                    {/* <div className={classes.LoadMore}>
-                        <span onClick={() => this.props.onInitMovielist(this.props.page)}>Load More ...</span>
-                    </div> */}
+                    { this.props.tvShows.length ? <EventDisplayCards list={this.props.tvShows} imagePath={"https://image.tmdb.org/t/p/w300"} moreInfo={ this.props.onClickTvBox}/> : <Spinner />}
                 </div>
             </div>
         )

@@ -1,90 +1,119 @@
 import React , { useState, useEffect } from 'react';
-import axios from 'axios';
-import DisplayCards from '../../components/DisplayCards/DisplayCards';
+import axios from '../../axios-list';
+import MovieDisplayCards from '../../components/DisplayCards/MovieDisplayCards/MovieDisplayCards';
+import EventDisplayCards from '../../components/DisplayCards/EventDisplayCards/EventDisplayCards';
 import ActorCards from '../../components/ActorCards/ActorCards';
+import Spinner from '../../components/UIcomponents/Spinner/Spinner';
+import withErrorHandler from '../../hoc/withErrorHandler/withErrorHandler';
 import classes from './Homepage.module.css';
 
 const Homepage = (props) => {
    const [HomepageState , HomePageStateHandler] = useState({
         HomePageStatus : false,
-        hits : []
+        hits : [],
+        error : false
     }) 
     const [eventState , eventStateHandler] = useState({
         EventStatus : false,
-        eventHits : []
+        eventHits : [],
+        error : false
     })
     const [personState , personStateHandler] = useState({
         personStatus : false,
-        personHits : []
+        personHits : [],
+        error : false
     })
+    let spinnerForMovieCards ;
+    let spinnerForEventCards ;
+    let spinnerForActorCards ;
 
     //Getting Trending Movies from Api and Storing them
     useEffect(() => {
-        async function fetchData(){
-            const result = await axios(
-                'https://api.themoviedb.org/3/trending/movie/day?api_key=c18a8c63bee9d66665a486a624d48177',
-            )
+        axios.get('/movie/day?api_key=c18a8c63bee9d66665a486a624d48177')
+        .then(response => {
             HomePageStateHandler({
                 HomePageStatus : true,
-                hits : result.data.results.splice(0 , 4)
-                })
-        }
-        fetchData();
+                hits : response.data.results.splice(0 , 4),
+                error : false
+            })
+        })
+        .catch(error => {
+            HomePageStateHandler(
+                {
+                ...HomepageState,
+                error : true
+                }
+            )
+        })
     }, [])
 
     //Getting Trending TV shows from Api and Storing them
     useEffect(() => {
-        async function fetchData(){
-            const result = await axios(
-                'https://api.themoviedb.org/3/trending/tv/day?api_key=c18a8c63bee9d66665a486a624d48177',
-            )
+        axios.get('/tv/day?api_key=c18a8c63bee9d66665a486a624d48177')
+        .then(response => {
             eventStateHandler({
                 EventStatus : true,
-                eventHits : result.data.results.splice(0 , 4)
-                })
-        }
-        fetchData();
+                eventHits : response.data.results.splice(0 , 4),
+                error : false
+            })
+        })
+        .catch(error => {
+            eventStateHandler ({
+                ...eventState,
+                error : true
+            })
+        })
     } , [])
 
     //Getting Trending Personalities from Api and Storing them
     useEffect(() => {
-        async function fetchData(){
-            const result = await axios(
-                'https://api.themoviedb.org/3/trending/person/day?api_key=c18a8c63bee9d66665a486a624d48177',
-            )
+        axios.get('/person/day?api_key=c18a8c63bee9d66665a486a624d48177')
+        .then(response => {
+            console.log("response is ", response)
             personStateHandler({
                 personStatus : true,
-                personHits : result.data.results
-                })
-        }
-        fetchData();
+                personHits : response.data.results,
+                error : false
+            })
+        })
+        .catch(error => {
+            personStateHandler ({
+                ...personState ,
+                error : true
+            })
+        })
     } , [])
+
+    spinnerForMovieCards = HomepageState.error ? <p> <strong>Images Cant be loaded at this time</strong> </p> : <Spinner />
+    spinnerForEventCards = eventState.error ? <p> <strong>Images Cant be loaded at this time</strong> </p> : <Spinner />
+    spinnerForActorCards = personState.error ? <p> <strong>Images Cant be loaded at this time </strong> </p> : <Spinner />
+    console.log('spinnerForActorCards', spinnerForActorCards);
 
     return (
        <div className={classes.Homepage}>
-
            <div className={classes.TrendingMovies}>
                 <div className={classes.HeadingWrapper}>
-                    <h2>Top Trending Movies Based On User Votes</h2>
+                    <h2>Top Trending Movies in Theatre</h2>
                 </div>
-                {HomepageState.hits.length  ? <DisplayCards list={HomepageState.hits} imagePath={"https://image.tmdb.org/t/p/w300"}/> : <p>Loading...</p>}
-                 
+                {HomepageState.hits.length  ? <MovieDisplayCards list={HomepageState.hits} imagePath={"https://image.tmdb.org/t/p/w300"} moreInfo={(id) => {console.log('id is ', id)}}/> :  spinnerForMovieCards }
            </div>
 
             <div className={classes.TrendingEvents}>
                 <div className={classes.HeadingWrapper}>
-                    <h2> Top Trending Series Based On User Voting</h2>
+                    <h2> Top Trending Series on TV</h2>
                 </div>
-                <DisplayCards list={eventState.eventHits} imagePath={"https://image.tmdb.org/t/p/w300"}/>
+                {eventState.eventHits.length ? <EventDisplayCards list={eventState.eventHits} imagePath={"https://image.tmdb.org/t/p/w300"}/> : spinnerForEventCards }
             </div>
 
             <div className={classes.TrendingPersons}>
                 <div className={classes.HeadingWrapper}>
                     <h2>Actors In LimeLight</h2>
-                    <ActorCards list={personState.personHits}/>
+                   {
+                       personState.personHits.length ?  <ActorCards list={personState.personHits}/> : spinnerForActorCards
+                   }
                 </div>
             </div>
        </div>
     )
 }
-export default Homepage;
+export default withErrorHandler(Homepage, axios);

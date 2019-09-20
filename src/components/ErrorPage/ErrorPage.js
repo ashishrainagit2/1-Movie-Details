@@ -6,7 +6,7 @@ class ErrorPage extends React.Component {
     render(){
         const rnd = Math.random();
 
-        if ( rnd > 0.7 ) {
+        if ( rnd > 0.3 ) {
             throw new Error( 'Something went wrong' );
         }
         return (
