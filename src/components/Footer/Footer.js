@@ -14,7 +14,7 @@ const footer = (props) => {
                     <div>
                         <Simpleheading name="MORE PAGES"/>
                         <Simplelink name="Register"/>
-                        <Simplelink name="Error Boundary"/>
+                        <Simplelink name="Error-Boundary"/>
                         <Simplelink name="Lorem Ipsum"/>
                         <Simplelink name="Lorem Ipsum"/>
                     </div>

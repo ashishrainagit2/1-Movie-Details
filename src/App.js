@@ -21,7 +21,7 @@ class App extends Component {
             <Route path="/movies"  component={Movielist} />
             <Route path="/slidertest"  component={Slider} />
             <Route path="/register"  component={Contactus} />
-            <Route path="/errors"  component={ErrorPage} />
+            <Route path="/error-boundary"  component={ErrorPage} />
             <Route path="/" exact component={Homepage} />
           </Switch>
           <Footer />
