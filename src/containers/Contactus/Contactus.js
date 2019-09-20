@@ -231,7 +231,7 @@ class Contactus extends Component {
                     />
                 ))}
 
-            <Button btnType="Success" disabled={!this.state.formIsValid}>ORDER</Button>
+            <Button btnType="Success" disabled={!this.state.formIsValid}>SUBMIT</Button>
 
             </form>
 

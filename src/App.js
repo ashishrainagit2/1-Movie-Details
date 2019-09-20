@@ -20,7 +20,7 @@ class App extends Component {
             <Route path="/tv"  component={Tvshowlist} />
             <Route path="/movies"  component={Movielist} />
             <Route path="/slidertest"  component={Slider} />
-            <Route path="/contact-us"  component={Contactus} />
+            <Route path="/register"  component={Contactus} />
             <Route path="/errors"  component={ErrorPage} />
             <Route path="/" exact component={Homepage} />
           </Switch>
