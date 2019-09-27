@@ -5,7 +5,7 @@ const actorCard = (props) => (
     <span className={Classes.ActorCard}>
         <div className={Classes.ActorDetails}>
             <div className={Classes.PosterWrapper}>
-                <img  src={"https://image.tmdb.org/t/p/w235_and_h235_face/" + props.imgPath  } />
+                <img  src={"https://image.tmdb.org/t/p/w235_and_h235_face/" + props.imgPath  } onClick={() => props.toActorPage(props.key)}/>
             </div>
             <div className={Classes.ActorDetails}>
                 <div>{ props.name} </div>

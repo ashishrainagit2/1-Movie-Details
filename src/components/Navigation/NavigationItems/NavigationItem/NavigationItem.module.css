@@ -10,12 +10,17 @@
     color: #000;
 }
 
-
 .NavigationLink {
     color: #FFF;
     text-decoration: none;
 }
 
-.NavigationLink:hover {
-    color: #000
+.NavigationLink a:hover {
+    color: green
+}
+
+a .my-active {
+    background: yellow;
+    color: #fff;
+    font-weight: 800;
 }

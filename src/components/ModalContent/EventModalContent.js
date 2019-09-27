@@ -1,5 +1,6 @@
 import React from 'react';
 import classes from './EventModalContent.module.css';
+import {NavLink} from 'react-router-dom';
 
 const movieModalContent = (props) => (
         <div className={classes.ModalContent}>
@@ -34,7 +35,12 @@ const movieModalContent = (props) => (
                                 <span className={classes.ModalTitle}>Overview:</span> 
                                 <div>{props.overview}</div>
                         </div>
-                        <div className={classes.MoreInfo}>More Info</div>
+                        <div className={classes.MoreInfo}>
+
+                        <NavLink to={{
+                             pathname : '/tv/' + props.id
+                             }} exact > More Info</NavLink>
+                        </div>
                 </div>
          </div>
 )

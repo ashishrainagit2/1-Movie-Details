@@ -5,6 +5,7 @@ import Backdrop from '../../components/UIcomponents/Backdrop/Backdrop';
 import Input from '../../components/UIcomponents/Input/Input';
 import Button from '../../components/UIcomponents/Button/Button';
 import axios from '../../axios-orders2';
+import LoginBox from '../../components/LoginBox/LoginBox';
 
 
 class Contactus extends Component {
@@ -21,7 +22,6 @@ class Contactus extends Component {
                 validation: {
                         required: true
                 },
-               
                 valid: false,
                 touched: false
             },
@@ -215,6 +215,8 @@ class Contactus extends Component {
         console.log(formElementsArray);
 
         let form = (
+            <React.Fragment>
+            <h2>Register Now!!</h2>
             <form onSubmit={this.orderHandler} >
                 {formElementsArray.map((formElement) => ( 
                     <Input 
@@ -233,6 +235,7 @@ class Contactus extends Component {
             <Button btnType="Success" disabled={!this.state.formIsValid}>SUBMIT</Button>
 
             </form>
+            </React.Fragment>
 
         )
 
@@ -249,7 +252,7 @@ class Contactus extends Component {
                 <Backdrop />
                 <div className={classes.contactusContent}>
                     <div className={classes.contactusText}>
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Blanditiis accusantium pariatur officiis nostrum? Provident, odio voluptate dicta soluta consequuntur eligendi facilis eveniet laudantium, nostrum, iste voluptatem itaque illo. Impedit, nam.
+                        <LoginBox />
                     </div>
                     <div className={classes.Contactus}>
                         {form}

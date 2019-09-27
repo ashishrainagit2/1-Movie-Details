@@ -4,12 +4,13 @@
 
 .contactusContent {
     display: grid;
-    grid-template-columns: 2fr 1fr;
+    grid-template-columns: 1fr 1fr;
     grid-gap: 10px;
+    border: 1px solid grey;
+    margin-top : 20px;
 
 }
 .Contactus {
-    border: 1px solid grey;
 }
 
 .contactusText {

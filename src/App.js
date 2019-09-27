@@ -17,12 +17,18 @@ class App extends Component {
         <div className="wrapper">
           <Toolbar className="ToolbarWrapper"/>
           <Switch>
-            <Route path="/tv"  component={Tvshowlist} />
-            <Route path="/movies"  component={Movielist} />
+            <Route path="/tv" exact component={Tvshowlist} />
+            <Route path="/tv/:id"   render={() => <h1>TV show Page</h1>} />
+            <Route path="/movies"  exact component={Movielist} />
+            <Route path="/movies/:id"   render={() => <h1>Movie Page</h1>} />
             <Route path="/slidertest"  component={Slider} />
             <Route path="/register"  component={Contactus} />
             <Route path="/error-boundary"  component={ErrorPage} />
-            <Route path="/" exact component={Homepage} />
+            <Route path="/actors"  render={() => <h1>Actors Page Under Construction</h1>} />
+            <Route path="/actor/:id"  render={() => <h1>Actor no : 11234</h1>} />
+            <Route path="/"  exact component={Homepage} />
+            <Route path="/home"   component={Homepage} />
+            <Route render={() => <h1>OOPS...Page Not found</h1>}/>
           </Switch>
           <Footer />
         </div>

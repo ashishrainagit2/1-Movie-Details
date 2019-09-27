@@ -5,7 +5,7 @@ import  {NavLink} from 'react-router-dom';
 const simplelink =  (props) => (
     <div className={classes.Simplelink_wrapper}>
          <NavLink className={classes.Simplelink}
-        to={props.name}>{props.name}
+        to={"/" + props.name}>{props.name}
         </NavLink>
     </div>
        

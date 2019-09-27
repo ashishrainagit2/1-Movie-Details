@@ -1,9 +1,11 @@
 import React from 'react';
 import classes from './MovieModalContent.module.css';
+import  { NavLink , withRouter}  from 'react-router-dom';
 
-const movieModalContent = (props) => (
-    <div className={classes.ModalContent}>
-
+const movieModalContent = (props) => {
+        console.log("props ee", props)
+    return (
+        <div className={classes.ModalContent}>
         <div className={classes.ModalImage}>
             <img src={ "https://image.tmdb.org/t/p/w400" + props.poster_path} alt={props.title}/>
         </div>
@@ -36,9 +38,14 @@ const movieModalContent = (props) => (
                     <span className={classes.ModalTitle}>Overview:</span> 
                     <div>{props.overview}</div>
             </div>
-            <div className={classes.MoreInfo}>More Info</div>
+            <div className={classes.MoreInfo}> 
+                <NavLink to={{
+                        pathname : '/movies/' + props.id
+                }} exact > More Info</NavLink>
         </div>
-    </div>
-)
+        </div>
+        </div>
+    )
+}
 
 export default movieModalContent;

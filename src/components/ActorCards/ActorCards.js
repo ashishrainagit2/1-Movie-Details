@@ -9,7 +9,8 @@ const actorCards = (props) => {
                     key={item.id} 
                     imgPath={item.profile_path} 
                     name={item.name} 
-                    popularity={item.popularity}/>
+                    popularity={item.popularity}
+                    toActorPage={() => props.actorPageRedirect(item.id)}/>
         ))
 }
 

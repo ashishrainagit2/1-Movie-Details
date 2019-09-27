@@ -67,6 +67,7 @@ class Tvshowlist extends Component {
                        adult = {value.adult}
                        release_date = {value.release_date}
                        overview = {value.overview}
+                       id={value.id}
                        />
                     )
                 }

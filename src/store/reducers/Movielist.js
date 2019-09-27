@@ -15,6 +15,7 @@ const initialState = {
 }
 
 const getMoreMovieInfo = (state , action) =>  {
+    console.log("movie info1222")
     let newModalStatus = !(state.ModalStatus);
     return updateObject(
         state , {

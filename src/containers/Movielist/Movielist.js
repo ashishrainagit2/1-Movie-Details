@@ -16,6 +16,10 @@ class Movielist extends Component {
         this.props.onInitMovielist(this.props.pageNumber);
     } 
 
+    moreInfo = (p) => {
+       console.log(p);
+    }
+
     render (){
         let modalContent = null;
         if(this.props.movielist != null){
@@ -31,6 +35,8 @@ class Movielist extends Component {
                         adult = {value.adult}
                         release_date = {value.release_date}
                         overview = {value.overview}
+                        id={value.id}
+                        moreInfo={() => this.moreInfo(value.id)}
                         />
                     )
                  }
@@ -49,7 +55,7 @@ class Movielist extends Component {
                             {modalContent}
                         </Modal>
 
-                        { this.props.movielist.length ? <MovieDisplayCards list={this.props.movielist} imagePath={"https://image.tmdb.org/t/p/w300"} moreInfo={ () => this.props.onClickMovieBox}/> : <Spinner />}
+                        { this.props.movielist.length ? <MovieDisplayCards list={this.props.movielist} imagePath={"https://image.tmdb.org/t/p/w300"} moreInfo={ this.props.onClickMovieBox} /> : <Spinner />}
 
                         <div className={classes.LoadMore}>
                             <span onClick={() => this.props.onInitMovielist(this.props.pageNumber)}>Load More</span>

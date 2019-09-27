@@ -6,6 +6,7 @@ import ActorCards from '../../components/ActorCards/ActorCards';
 import Spinner from '../../components/UIcomponents/Spinner/Spinner';
 import withErrorHandler from '../../hoc/withErrorHandler/withErrorHandler';
 import classes from './Homepage.module.css';
+import { Route , withRouter } from 'react-router-dom';
 
 const Homepage = (props) => {
    const [HomepageState , HomePageStateHandler] = useState({
@@ -89,27 +90,42 @@ const Homepage = (props) => {
     spinnerForActorCards = personState.error ? <p> <strong>Images Cant be loaded at this time </strong> </p> : <Spinner />
     console.log('spinnerForActorCards', spinnerForActorCards);
 
+
+    const moreInfoOnClick = (type , id) => {
+        console.log(type , id);
+        props.history.push( '/home/' + type + '/' + id );
+    }
+
+    const actorPageRedirectHandler = (id) => {
+        console.log(id);
+        props.history.push( '/actor/' + id );
+    }
+
     return (
        <div className={classes.Homepage}>
            <div className={classes.TrendingMovies}>
                 <div className={classes.HeadingWrapper}>
                     <h2>Top Trending Movies in Theatre</h2>
                 </div>
-                {HomepageState.hits.length  ? <MovieDisplayCards list={HomepageState.hits} imagePath={"https://image.tmdb.org/t/p/w300"} moreInfo={(id) => {console.log('id is ', id)}}/> :  spinnerForMovieCards }
+                {HomepageState.hits.length  ? <MovieDisplayCards list={HomepageState.hits} imagePath={"https://image.tmdb.org/t/p/w300"} moreInfo={(id) => moreInfoOnClick('movies' , id)}/> :  spinnerForMovieCards }
+
+                <Route path={ '/home/movies/:id'} exact render={() => <p>Special Movie</p>} />
            </div>
 
             <div className={classes.TrendingEvents}>
                 <div className={classes.HeadingWrapper}>
                     <h2> Top Trending Series on TV</h2>
                 </div>
-                {eventState.eventHits.length ? <EventDisplayCards list={eventState.eventHits} imagePath={"https://image.tmdb.org/t/p/w300"}/> : spinnerForEventCards }
+                {eventState.eventHits.length ? <EventDisplayCards list={eventState.eventHits} imagePath={"https://image.tmdb.org/t/p/w300"}  moreInfo={(id) => moreInfoOnClick('tv' , id)} /> : spinnerForEventCards }
+
+                <Route path={ '/home/tv/:id'} exact render={() => <p>Special Events</p>} />
             </div>
 
             <div className={classes.TrendingPersons}>
                 <div className={classes.HeadingWrapper}>
                     <h2>Actors In LimeLight</h2>
                    {
-                       personState.personHits.length ?  <ActorCards list={personState.personHits}/> : spinnerForActorCards
+                       personState.personHits.length ?  <ActorCards list={personState.personHits} actorPageRedirect={(id) => actorPageRedirectHandler(id)}/> : spinnerForActorCards
                    }
                 </div>
             </div>
