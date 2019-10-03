@@ -30,6 +30,7 @@ const Homepage = (props) => {
 
     //Getting Trending Movies from Api and Storing them
     useEffect(() => {
+        console.log("props on home", props)
         axios.get('/movie/day?api_key=c18a8c63bee9d66665a486a624d48177')
         .then(response => {
             HomePageStateHandler({
@@ -88,16 +89,13 @@ const Homepage = (props) => {
     spinnerForMovieCards = HomepageState.error ? <p> <strong>Images Cant be loaded at this time</strong> </p> : <Spinner />
     spinnerForEventCards = eventState.error ? <p> <strong>Images Cant be loaded at this time</strong> </p> : <Spinner />
     spinnerForActorCards = personState.error ? <p> <strong>Images Cant be loaded at this time </strong> </p> : <Spinner />
-    console.log('spinnerForActorCards', spinnerForActorCards);
 
 
     const moreInfoOnClick = (type , id) => {
-        console.log(type , id);
         props.history.push( '/home/' + type + '/' + id );
     }
 
     const actorPageRedirectHandler = (id) => {
-        console.log(id);
         props.history.push( '/actor/' + id );
     }
 
@@ -109,7 +107,7 @@ const Homepage = (props) => {
                 </div>
                 {HomepageState.hits.length  ? <MovieDisplayCards list={HomepageState.hits} imagePath={"https://image.tmdb.org/t/p/w300"} moreInfo={(id) => moreInfoOnClick('movies' , id)}/> :  spinnerForMovieCards }
 
-                <Route path={ '/home/movies/:id'} exact render={() => <p>Special Movie</p>} />
+                <Route path={ '/home/movies/:id'} exact render={() => <p> Hello {props.location.pathname} </p>} />
            </div>
 
             <div className={classes.TrendingEvents}>
@@ -118,7 +116,7 @@ const Homepage = (props) => {
                 </div>
                 {eventState.eventHits.length ? <EventDisplayCards list={eventState.eventHits} imagePath={"https://image.tmdb.org/t/p/w300"}  moreInfo={(id) => moreInfoOnClick('tv' , id)} /> : spinnerForEventCards }
 
-                <Route path={ '/home/tv/:id'} exact render={() => <p>Special Events</p>} />
+                <Route path={ props.match.url + '/home/tv/:id'} exact render={() => <p>Special Events</p>} />
             </div>
 
             <div className={classes.TrendingPersons}>

@@ -2,6 +2,7 @@ import React from 'react';
 import classes from './Input.module.css';
 
 const input = (props) => {
+    
     let inputElement = null;
     const inputClasses = [classes.InputElement];
 
@@ -12,7 +13,7 @@ const input = (props) => {
     switch(props.elementType){
         case('input'):
         inputElement = <input 
-            className={inputClasses.join('')}
+            className={inputClasses.join(' ')}
             {...props.elementConfig}
             value={props.value}
             onChange={props.changed} />;
@@ -38,16 +39,16 @@ const input = (props) => {
                     </select>
             );
             break;
-            case ('radio'):
-                inputElement = (
-                            <input
-                            className={inputClasses.join(' ')}
-                            value={props.value}
-                            onChange={props.changed}>
-                            {props.value}
-                            </input>
-                    );
-                    break;
+        case ('radio'):
+            inputElement = (
+                        <input
+                        className={inputClasses.join(' ')}
+                        value={props.value}
+                        onChange={props.changed}>
+                        {props.value}
+                        </input>
+                );
+                break;
             default :
                 inputElement = <input
                     className={inputClasses.join(' ')}

@@ -13,6 +13,7 @@ import MoviesModalContent from '../../components/ModalContent/MovieModalContent'
 class Movielist extends Component {
 
     componentDidMount () {
+        console.log("props on movie", this.props);
         this.props.onInitMovielist(this.props.pageNumber);
     } 
 

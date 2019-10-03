@@ -40,7 +40,7 @@ const movieModalContent = (props) => {
             </div>
             <div className={classes.MoreInfo}> 
                 <NavLink to={{
-                        pathname : '/movies/' + props.id
+                        pathname : props.match.url + "/" +  props.id
                 }} exact > More Info</NavLink>
         </div>
         </div>
@@ -48,4 +48,4 @@ const movieModalContent = (props) => {
     )
 }
 
-export default movieModalContent;
+export default withRouter(movieModalContent);

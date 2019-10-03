@@ -9,9 +9,9 @@ import LoginBox from '../../components/LoginBox/LoginBox';
 
 
 class Contactus extends Component {
+    
     state = {
         orderForm : {
-            // firstname,lastname, username, phone number , password, verify password, gender , address
             firstname : {
                 elementType : 'input',
                 elementConfig : {
@@ -20,7 +20,9 @@ class Contactus extends Component {
                 },
                 value: '',
                 validation: {
-                        required: true
+                        required: true,
+                        minLength :3,
+                        type: 'textonly'
                 },
                 valid: false,
                 touched: false
@@ -33,7 +35,9 @@ class Contactus extends Component {
                 },
                 value: '',
                 validation: {
-                        required: true
+                        required: true,
+                        minLength :3,
+                        type: 'textonly'
                 },
                 valid: false,
                 touched: false
@@ -46,7 +50,9 @@ class Contactus extends Component {
                 },
                 value: '',
                 validation: {
-                        required: true
+                        required: true,
+                        minLength: 5,
+                        type : 'alphanumeric'
                 },
                 valid: false,
                 touched: false
@@ -79,62 +85,46 @@ class Contactus extends Component {
                 valid: false,
                 touched: false
             },
-            verify_password : {
+            email : {
                 elementType : 'input',
                 elementConfig : {
-                    type : 'password',
-                    placeholder: 'Verify Password'
+                    type : 'email',
+                    placeholder: 'Email'
                 },
                 value: '',
                 validation: {
-                        required: true
+                        required: true,
+                        minLength: 5,
+                        type : 'email'
                 },
                 valid: false,
                 touched: false
             },
-            // gender1 :{
-            //     elementType : 'radio',
-            //     elementConfig : {
-            //         type: 'radio',
-            //         placeholder : '',
-            //         name: 'gender'
-            //     },
-            //     label: 'male',
-            //     value : '',
-            //     validation: {
-            //             required: true
-            //     },
-            //     valid: false,
-            //     touched: false
-            // },
-            // gender2 :{
-            //     elementType : 'radio',
-            //     elementConfig : {
-            //         type: 'radio',
-            //         placeholder : '',
-            //         name : 'gender'
-            //     },
-            //     label: 'female',
-            //     value : '',
-            //     validation: {
-            //             required: true
-            //     },
-            //     valid: false,
-            //     touched: false
-            // },
-            // textarea :{
-            //     elementType : 'textarea',
-            //     elementConfig : {
-            //         type: 'textarea',
-            //         placeholder : 'Write your message here ...'
-            //     },
-            //     value: '',
-            //     validation: {
-            //             required: true
-            //     },
-            //     valid: false,
-            //     touched: false
-            // },
+            gender :{
+                elementType: 'select',
+                elementConfig: {
+                    options: [
+                        {value: 'Male', displayValue: 'Male'},
+                        {value: 'Female', displayValue: 'Female'}
+                    ]
+                },
+                value: '',
+                validation: {},
+                valid: true
+            },
+            textarea :{
+                elementType : 'textarea',
+                elementConfig : {
+                    type: 'textarea',
+                    placeholder : 'Write your message here ...'
+                },
+                value: '',
+                validation: {
+                        
+                },
+                valid: false,
+                touched: false
+            },
         },
         loading : false,
         formIsValid : false,
@@ -150,12 +140,11 @@ class Contactus extends Component {
             for (let formElementIdentifier in this.state.orderForm) {
                 formData[formElementIdentifier] = this.state.orderForm[formElementIdentifier].value;
             }   
-            console.log(formData);
+            
             axios.post('/formdata.json', formData)
             .then(response => {
                     this.setState({ loading: false, formFilled : true });
                     // this.props.history.push('/');
-                    console.log('data posted');
             })
             .catch(error => {
                     this.setState({ loading: false });
@@ -178,17 +167,70 @@ class Contactus extends Component {
                 isValid = value.length <= rules.maxLength && isValid
         }
 
+        if (rules.type) {
+
+            switch(rules.type){
+                case('textonly'):
+
+                    isValid = this.AllLetter(value) && isValid;
+                break;
+                case('alphanumeric'):
+                    isValid = this.alphanumeric(value) && isValid;
+                break;
+                case ('email'):
+                    isValid = this.ValidateEmail(value) && isValid;
+                default :
+                    break
+            }
+        }
+
         return isValid;
 }
 
+
+     AllLetter = (inputtxt) => {
+
+        const letters = /^[A-Za-z]+$/;
+        if(inputtxt.match(letters))
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+
+    alphanumeric = (inputtxt) => {
+
+        var letterNumber = /^[0-9a-zA-Z]+$/;
+        if(inputtxt.match(letterNumber)) 
+        {
+             return true;
+        }
+        else
+        { 
+            return false; 
+        }
+    }
+
+    ValidateEmail = (mail) => {
+    if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(mail))
+    {
+        return (true)
+    }
+        return (false)
+    }
+
     inputChangedHandler = (event, inputIdentifier) => {
-        console.log('inputidentifier' , inputIdentifier);
+        console.log("w")
         const updatedOrderForm =  {
             ...this.state.orderForm
         }
         const updatedFormElement = {
             ...updatedOrderForm[inputIdentifier]
         }
+        console.log("1", event.target.value);
         updatedFormElement.value = event.target.value;
         updatedFormElement.valid = this.checkValidity(updatedFormElement.value, updatedFormElement.validation);
 
@@ -202,8 +244,8 @@ class Contactus extends Component {
         }
 
         this.setState({orderForm : updatedOrderForm , formIsValid: formIsValid})
-        console.log('orderForm', this.state);
     }
+
     render (){
         const formElementsArray = [];
                 for (let key in this.state.orderForm) {
@@ -212,7 +254,6 @@ class Contactus extends Component {
                                 config: this.state.orderForm[key]
                         });
                 }
-        console.log(formElementsArray);
 
         let form = (
             <React.Fragment>
@@ -221,7 +262,7 @@ class Contactus extends Component {
                 {formElementsArray.map((formElement) => ( 
                     <Input 
                     key = {formElement.id}
-                    elementType = {formElement.id}
+                    elementType = {formElement.config.elementType}
                     elementConfig = {formElement.config.elementConfig}
                     value = {formElement.config.value}
                     label={formElement.config.label}
