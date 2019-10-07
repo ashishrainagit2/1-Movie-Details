@@ -5,7 +5,11 @@ const actorCard = (props) => (
     <span className={Classes.ActorCard}>
         <div className={Classes.ActorDetails}>
             <div className={Classes.PosterWrapper}>
-                <img  src={"https://image.tmdb.org/t/p/w235_and_h235_face/" + props.imgPath  } onClick={() => props.toActorPage(props.key)}/>
+                <img  
+                    src={"https://image.tmdb.org/t/p/w235_and_h235_face/" + props.imgPath  } 
+                    onClick={() => props.toActorPage(props.key)}
+                    onError={(e)=>{e.target.onerror = null; e.target.src="https://dummyimage.com/235x235/000/fff&text=Image+Missing!!!"}}
+                    />
             </div>
             <div className={Classes.ActorDetails}>
                 <div>{ props.name} </div>

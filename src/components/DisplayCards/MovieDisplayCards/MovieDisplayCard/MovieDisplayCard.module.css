@@ -22,6 +22,10 @@
     display: none;
 }
 
+.ImageWrapper img {
+    /* background: url('http://dummyimage.com/300X450/000000/fff&amp;text=Image+Not+Found!!!') no-repeat scroll 0 0; */
+}
+
 .DetailsWrapper {
     
 

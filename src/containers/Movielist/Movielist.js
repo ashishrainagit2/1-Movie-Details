@@ -13,13 +13,9 @@ import MoviesModalContent from '../../components/ModalContent/MovieModalContent'
 class Movielist extends Component {
 
     componentDidMount () {
-        console.log("props on movie", this.props);
         this.props.onInitMovielist(this.props.pageNumber);
     } 
 
-    moreInfo = (p) => {
-       console.log(p);
-    }
 
     render (){
         let modalContent = null;
@@ -37,7 +33,7 @@ class Movielist extends Component {
                         release_date = {value.release_date}
                         overview = {value.overview}
                         id={value.id}
-                        moreInfo={() => this.moreInfo(value.id)}
+                        trailerClick = {(id) => this.props.trailerClickHandler(id)}
                         />
                     )
                  }
@@ -47,6 +43,8 @@ class Movielist extends Component {
 
         return (
             <React.Fragment>
+                {console.log("trailer" , this.props.trailerId)}
+                {this.props.trailerid ? <p>hello mello</p> : null}
                 <div className={classes.filterWrapper}>
                         <Filter selectedFilters = {this.props.filter} onfilterApply={(event) => this.props.onFilterApplyHandler(event)} selected={this.props.selectedFilter}/>
                 </div>
@@ -78,7 +76,8 @@ const mapStateToProps = state => {
         totalPages : state.movieList.totalPages,
         scrolling : state.movieList.scrolling,
         filter : state.movieList.ratingFilter,
-        selectedFilter : state.movieList.selectedFilter
+        selectedFilter : state.movieList.selectedFilter,
+        trailerId : state.movieList.trailerId
     };
 }
 
@@ -87,7 +86,8 @@ const mapDispatchToProps = dispatch => {
         onInitMovielist: (no) => dispatch(actions.initMovielist(no)),
         onClickMovieBox : (id) => dispatch(actions.getMoreMovieInfo(id)),
         onLoadMore : () => dispatch(actions.getMoreMovies()),
-        onFilterApplyHandler : (event) => dispatch(actions.filterMovies(event))
+        onFilterApplyHandler : (event) => dispatch(actions.filterMovies(event)),
+        trailerClickHandler : (id) => dispatch(actions.trailerClicked(id))
     }
 }
 

@@ -21,3 +21,10 @@
     color: #800000;
     cursor : pointer;
 }
+
+.MoreInfoBars {
+    display: inline-block;
+    width: 50%;
+    box-sizing: border-box;
+    margin: 5px;
+}

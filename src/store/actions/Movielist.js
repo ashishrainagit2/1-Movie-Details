@@ -16,7 +16,6 @@ export const fetchMovieListFailed = () => {
 };
 
 export const getMoreMovieInfo = (props) => {
-    console.log("1q2qw2");
     return  {
         type : actionTypes.GET_MORE_MOVIE_INFO,
         id : props
@@ -34,12 +33,11 @@ export const initMovielist = (no) => {
     return dispatch => {
         axios.get("popular?api_key=c18a8c63bee9d66665a486a624d48177&language=en-US&page=" + no)
             .then( response => {
-                console.log("response ", response)
                dispatch(setMovieList(response.data));
-            } )
+            })
             .catch( error => {
                 dispatch(fetchMovieListFailed());
-            } );
+            });
     };
 };
 
@@ -47,5 +45,12 @@ export const filterMovies = (event) => {
     return {
         type : actionTypes.FILTER_MOVIE_DATA,
         filterType: event.target.value
+    }
+}
+
+export const trailerClicked = (id) => {
+    return {
+        type : actionTypes.GET_TRAILER,
+        trailerId: id
     }
 }

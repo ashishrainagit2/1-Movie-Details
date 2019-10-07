@@ -2,7 +2,8 @@ export {
     initMovielist,
     getMoreMovieInfo,
     getMoreMovies,
-    filterMovies
+    filterMovies,
+    trailerClicked
 } from './Movielist';
 
 export {

@@ -11,11 +11,11 @@ const initialState = {
     totalPages : null,
     scrolling : false,
     ratingFilter : ['RATED', 'HIGHEST RATED' , 'LOWEST RATED' ],
-    selectedFilter : "RATED"
+    selectedFilter : "RATED",
+    trailerId : null
 }
 
 const getMoreMovieInfo = (state , action) =>  {
-    console.log("movie info1222")
     let newModalStatus = !(state.ModalStatus);
     return updateObject(
         state , {
@@ -59,12 +59,19 @@ const filterMovieData =  (state, action) => {
     } );
 }
 
+const getTrailerData = (state, action ) => {
+    return updateObject( state, {
+        trailerId : action.trailerId
+    } );
+}
+
 const reducer = ( state = initialState, action ) => {
     switch ( action.type ) {
         case actionTypes.SET_MOVIE_LIST: return addMovieList( state, action );
         case actionTypes.GET_MORE_MOVIE_INFO : return getMoreMovieInfo(state , action);
         case actionTypes.GET_MORE_MOVIE_CARDS : return getMoreMovieCards(state , action);
         case actionTypes.FILTER_MOVIE_DATA : return filterMovieData(state , action);
+        case actionTypes.GET_TRAILER : return getTrailerData(state , action);
         default: return state;
     }
 };

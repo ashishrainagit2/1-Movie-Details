@@ -30,7 +30,6 @@ const Homepage = (props) => {
 
     //Getting Trending Movies from Api and Storing them
     useEffect(() => {
-        console.log("props on home", props)
         axios.get('/movie/day?api_key=c18a8c63bee9d66665a486a624d48177')
         .then(response => {
             HomePageStateHandler({
@@ -71,7 +70,6 @@ const Homepage = (props) => {
     useEffect(() => {
         axios.get('/person/day?api_key=c18a8c63bee9d66665a486a624d48177')
         .then(response => {
-            console.log("response is ", response)
             personStateHandler({
                 personStatus : true,
                 personHits : response.data.results,
