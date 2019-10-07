@@ -44,7 +44,7 @@ class Movielist extends Component {
         return (
             <React.Fragment>
                 {console.log("trailer" , this.props.trailerId)}
-                {this.props.trailerid ? <p>hello mello</p> : null}
+                {this.props.trailerId ? <p>hello mello</p> : null}
                 <div className={classes.filterWrapper}>
                         <Filter selectedFilters = {this.props.filter} onfilterApply={(event) => this.props.onFilterApplyHandler(event)} selected={this.props.selectedFilter}/>
                 </div>

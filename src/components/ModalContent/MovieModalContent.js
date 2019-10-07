@@ -48,9 +48,6 @@ const movieModalContent = (props) => {
                                                 pathname : props.match.url + "/" +  props.id
                                         }} exact > More Info</NavLink>
                                 </span>
-                                
-
-                                
                         </div>
                 </div>
         </div>
