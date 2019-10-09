@@ -3,7 +3,6 @@ import classes from './MovieDisplayCard.module.css';
 import defaultimg from '../../../../assets/logo.png' ;
 
 const displayCard = (props) => {
-    console.log("111", props)
     return (
         <div key={props.id} className={classes.DisplayCards} onClick={(id) =>props.moreInfo(props.id)}>
             <div className={classes.DisplayContent}>

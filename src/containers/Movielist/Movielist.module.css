@@ -70,3 +70,14 @@
     grid-gap: 10px;
     align-items: start;
 }
+
+.closeModal {
+    text-align: right;
+    font-weight: bolder;
+    color: white; 
+}
+
+.closeModal span {
+    background: #800000;
+    cursor: pointer;
+}

@@ -9,6 +9,7 @@ import { Route, Switch } from 'react-router-dom';
 import Footer from './components/Footer/Footer';
 import ErrorPage from './components/ErrorPage/ErrorPage';
 import Contactus from './containers/Contactus/Contactus';
+import Moviepage from './containers/Moviepage/Moviepage';
 
 import asyncComponent from '../src/hoc/asyncComponent';
 // import NewPost from './NewPost/NewPost';
@@ -38,7 +39,7 @@ class App extends Component {
             />
             <Route path="/tv/:id"   render={() => <h1>TV show Page</h1>} />
             <Route path="/movies"  exact component={AsyncNewPost} />
-            <Route path="/movies/:id"   render={() => <h1>Movie Page</h1>} />
+            <Route path="/movies/:id"   component ={Moviepage} />
             <Route path="/slidertest"  component={Slider} />
             <Route path="/register"  component={Contactus} />
             <Route path="/error-boundary"  component={ErrorPage} />

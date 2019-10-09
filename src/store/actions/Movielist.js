@@ -48,9 +48,21 @@ export const filterMovies = (event) => {
     }
 }
 
-export const trailerClicked = (id) => {
+export const trailerClickedHandler = (id) => {
     return {
         type : actionTypes.GET_TRAILER,
         trailerId: id
+    }
+}
+
+export const trailerClicked = (id) => {
+    return dispatch => {
+        axios.get("https://api.themoviedb.org/3/movie/" + id + "/videos?api_key=c18a8c63bee9d66665a486a624d48177&language=en-US")
+        .then( response => {
+            dispatch(trailerClickedHandler(response.data.results[0].key));
+        })
+        .catch( error => {
+           console.log("error in youtube")
+        });
     }
 }

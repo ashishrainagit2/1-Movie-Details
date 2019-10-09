@@ -20,7 +20,8 @@ const getMoreMovieInfo = (state , action) =>  {
     return updateObject(
         state , {
             ModalStatus : newModalStatus,
-            activeMovie : action.id
+            activeMovie : action.id,
+            trailerId : null
         }
     )
 }

@@ -11,3 +11,7 @@ export {
     getMoreTvInfo,
     changeLoadingState
 } from './Tvshowlist';
+
+export {
+    getMovieDetails
+} from './Moviepage';

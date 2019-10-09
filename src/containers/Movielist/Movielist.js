@@ -41,10 +41,19 @@ class Movielist extends Component {
             })
         }
 
+        if(this.props.trailerId){
+             modalContent = (<div>
+                 <div className={classes.closeModal}> 
+                     <span onClick={this.props.onClickMovieBox}>Close</span>
+                </div>
+                <iframe width="100%" height="400px"
+                    src={"https://www.youtube.com/embed/" + this.props.trailerId}>
+                </iframe>
+             </div> )
+        }
+
         return (
             <React.Fragment>
-                {console.log("trailer" , this.props.trailerId)}
-                {this.props.trailerId ? <p>hello mello</p> : null}
                 <div className={classes.filterWrapper}>
                         <Filter selectedFilters = {this.props.filter} onfilterApply={(event) => this.props.onFilterApplyHandler(event)} selected={this.props.selectedFilter}/>
                 </div>
