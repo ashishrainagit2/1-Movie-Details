@@ -8,3 +8,5 @@ export const CHANGE_LOADING_STATE = 'CHANGE_LOADING_STATE';
 export const FILTER_MOVIE_DATA = "FILTER_MOVIE_DATA";
 export const GET_TRAILER = "GET_TRAILER";
 export const SET_MOVIE = "SET_MOVIE";
+export const SET_TRAILER = "SET_TRAILER";
+export const CLOSE_TRAILER = "CLOSE_TRAILER";

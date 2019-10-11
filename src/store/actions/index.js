@@ -13,5 +13,7 @@ export {
 } from './Tvshowlist';
 
 export {
-    getMovieDetails
+    getMovieDetails,
+    getMovieTrailer,
+    closeTrailer
 } from './Moviepage';

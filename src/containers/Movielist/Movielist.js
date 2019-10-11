@@ -16,7 +16,6 @@ class Movielist extends Component {
         this.props.onInitMovielist(this.props.pageNumber);
     } 
 
-
     render (){
         let modalContent = null;
         if(this.props.movielist != null){
