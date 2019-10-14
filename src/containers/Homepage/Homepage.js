@@ -89,8 +89,12 @@ const Homepage = (props) => {
     spinnerForActorCards = personState.error ? <p> <strong>Images Cant be loaded at this time </strong> </p> : <Spinner />
 
 
-    const moreInfoOnClick = (type , id) => {
-        props.history.push( '/home/' + type + '/' + id );
+    const moreInfoOnClickMovies = ( id) => {
+        props.history.push( '/movies/movie/?id='+ id );
+    }
+
+    const moreInfoOnClickTv = (id) => {
+        props.history.push( '/tvshow/' +  id );
     }
 
     const actorPageRedirectHandler = (id) => {
@@ -103,7 +107,11 @@ const Homepage = (props) => {
                 <div className={classes.HeadingWrapper}>
                     <h2>Top Trending Movies in Theatre</h2>
                 </div>
-                {HomepageState.hits.length  ? <MovieDisplayCards list={HomepageState.hits} imagePath={"https://image.tmdb.org/t/p/w300"} moreInfo={(id) => moreInfoOnClick('movies' , id)}/> :  spinnerForMovieCards }
+                {HomepageState.hits.length  ? <MovieDisplayCards 
+                                                list={HomepageState.hits} 
+                                                imagePath={"https://image.tmdb.org/t/p/w300"} 
+                                                moreInfo={(id) => moreInfoOnClickMovies(id)}
+                                            /> :  spinnerForMovieCards }
 
                 <Route path={ '/home/movies/:id'} exact render={() => <p> Hello {props.location.pathname} </p>} />
            </div>
@@ -112,7 +120,11 @@ const Homepage = (props) => {
                 <div className={classes.HeadingWrapper}>
                     <h2> Top Trending Series on TV</h2>
                 </div>
-                {eventState.eventHits.length ? <EventDisplayCards list={eventState.eventHits} imagePath={"https://image.tmdb.org/t/p/w300"}  moreInfo={(id) => moreInfoOnClick('tv' , id)} /> : spinnerForEventCards }
+                {eventState.eventHits.length ? <EventDisplayCards 
+                                                    list={eventState.eventHits} 
+                                                    imagePath={"https://image.tmdb.org/t/p/w300"}  
+                                                    moreInfo={(id) => moreInfoOnClickTv(id)} 
+                                                /> : spinnerForEventCards }
 
                 <Route path={ props.match.url + '/home/tv/:id'} exact render={() => <p>Special Events</p>} />
             </div>
@@ -121,7 +133,10 @@ const Homepage = (props) => {
                 <div className={classes.HeadingWrapper}>
                     <h2>Actors In LimeLight</h2>
                    {
-                       personState.personHits.length ?  <ActorCards list={personState.personHits} actorPageRedirect={(id) => actorPageRedirectHandler(id)}/> : spinnerForActorCards
+                       personState.personHits.length ?  <ActorCards 
+                                                        list={personState.personHits} 
+                                                        actorPageRedirect={(id) => actorPageRedirectHandler(id)}
+                                                        /> : spinnerForActorCards
                    }
                 </div>
             </div>

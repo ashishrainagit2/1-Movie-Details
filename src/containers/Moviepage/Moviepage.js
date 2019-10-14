@@ -13,18 +13,12 @@ class Moviepage extends Component {
     componentDidMount () {
         let movieid = null;
         
-       
         const query = new URLSearchParams( this.props.location.search );
-        
         for ( let param of query.entries() ) {
            if (param[0] === "id"){
              movieid = +param[1]
            }
         }
-
-        console.log("movieid", movieid);
-        console.log("this.props.movieid", this.props.movieid);
-        console.log('state id', this.state.id)
         if(this.props.movieid){
             this.setState({id: this.props.movieid})
             this.props.getMovieDetails(this.props.movieid);
@@ -39,19 +33,6 @@ class Moviepage extends Component {
 
     render(){
         let moviepage = <p>Movie number : { this.state.id } </p>
-        console.log('this.props.moviedetails', this.props.moviedetails)
-        // if(this.props.moviedetails != null){
-        //    let  obj = {...this.props.moviedetails}
-        //     console.log('this.props.moviedetails33333', obj)
-        //     let result = Object.keys(obj).map((e , i) => {
-        //         <p>jjjj</p>
-        //     });
-        //     moviepage = (result).map((value, i) => { 
-        //         return (
-        //             <p>Hello mello</p>
-        //         )
-        //     })
-        // }
         let movie = <p>Loading ...</p>;
             if(this.props.moviedetails != null){
                 let movieinfo = this.props.moviedetails;
@@ -68,21 +49,17 @@ class Moviepage extends Component {
                             runtime={movieinfo.runtime}
                             revenue={movieinfo.revenue}
                             language={movieinfo.original_language}
-                            genre={"a"}
+                            genre={movieinfo.genres}
                             click={(no) => this.props.getMovieTrailer(this.state.id)}
                             activetrailer = {this.props.activeTrailer}
                             closeTrailer = {this.props.closeTrailerHandler}
                         />)
-
-                
             }
         
         return (
            <p>{movie}</p>
-
         )
     }
-    
 }
 
 const mapStateToProps = state => {

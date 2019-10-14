@@ -46,3 +46,7 @@
 .AvgVote {
     justify-self: end;
 }
+
+.ReleaseDate , .AvgVote {
+    font-weight: bold;
+}

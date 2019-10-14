@@ -10,6 +10,8 @@ import Footer from './components/Footer/Footer';
 import ErrorPage from './components/ErrorPage/ErrorPage';
 import Contactus from './containers/Contactus/Contactus';
 import Moviepage from './containers/Moviepage/Moviepage';
+import Actorpage from './containers/Actorpage/Actorpage';
+import Tvshow from './containers/Tvshow/Tvshow';
 
 import asyncComponent from '../src/hoc/asyncComponent';
 // import NewPost from './NewPost/NewPost';
@@ -37,16 +39,17 @@ class App extends Component {
                 </Suspense>
               )} 
             />
-            <Route path="/tv/:id"   render={() => <h1>TV show Page</h1>} />
+            
             <Route path="/movies"  exact component={AsyncNewPost} />
             <Route path="/movies/:id"   component ={Moviepage} />
             <Route path="/slidertest"  component={Slider} />
             <Route path="/register"  component={Contactus} />
             <Route path="/error-boundary"  component={ErrorPage} />
             <Route path="/actors"  render={() => <h1>Actors Page Under Construction</h1>} />
-            <Route path="/actor/:id"  render={() => <h1>Actor no : 11234</h1>} />
+            <Route path="/actor/:id"  component={Actorpage} />
             <Route path="/"  exact component={Homepage} />
             <Route path="/home"   component={Homepage} />
+            <Route path="/tvshow/:id"  exact component={Tvshow} />
             <Route render={() => <h1>OOPS...Page Not found</h1>}/>
           </Switch>
           <Footer />

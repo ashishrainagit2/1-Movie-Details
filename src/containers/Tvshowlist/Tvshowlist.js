@@ -19,7 +19,6 @@ class Tvshowlist extends Component {
 
     scrollHandler(e){
             const lastElement = document.querySelector('header + div > div > div:last-child');
-            console.log("last elemet is ", lastElement)
             if(lastElement != null){
                 const lastElementOffset = lastElement.offsetTop + lastElement.clientHeight;
                 const pageOffset = window.pageYOffset + window.innerHeight;

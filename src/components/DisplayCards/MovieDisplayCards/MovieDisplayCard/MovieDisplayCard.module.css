@@ -50,3 +50,11 @@
 .AvgVote {
     justify-self: end;
 }
+
+.ReleaseDate , .AvgVote {
+    font-weight: bold;
+}
+
+.posterImg {
+    /* border-radius: 10px;; */
+}

@@ -1,3 +1,21 @@
+.Moviecard {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+.Poster {
+
+}
+
+.Details {
+    text-align: left;
+    margin: 5px;
+}
+
+.Overview {
+    font-weight: bold;
+    padding: 5px;
+}
 .Name {
     font-weight: bold;
 }
@@ -12,4 +30,14 @@
     border: 1px solid #880000;
     margin: 5px;
     border-radius: 5px;
+}
+
+.red {
+    color: #880000
+}
+
+.text {
+    padding: 5px;
+    font-weight: bold;
+    display: inline-block;
 }

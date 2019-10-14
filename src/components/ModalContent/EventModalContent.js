@@ -38,7 +38,7 @@ const movieModalContent = (props) => (
                         <div className={classes.MoreInfo}>
 
                         <NavLink to={{
-                             pathname : '/tv/' + props.id
+                             pathname : '/tvshow/' + props.id
                              }} exact > More Info</NavLink>
                         </div>
                 </div>

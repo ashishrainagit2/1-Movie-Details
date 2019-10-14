@@ -17,3 +17,7 @@ export {
     getMovieTrailer,
     closeTrailer
 } from './Moviepage';
+
+export {
+    getActorDetails
+} from './Actorpage';
