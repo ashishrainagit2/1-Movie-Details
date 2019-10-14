@@ -1,0 +1,17 @@
+.Tvshowpage {
+    display: grid;
+    grid-template-columns: 1fr 1.5fr;
+    margin: 10px;;
+}
+
+.media {
+
+}
+
+.info {
+    text-align: left;
+}
+
+.info span {
+    
+}
