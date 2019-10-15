@@ -6,9 +6,9 @@ const actorCard = (props) => (
         <div className={Classes.ActorDetails}>
             <div className={Classes.PosterWrapper}>
                 <img  
-                    src={"https://image.tmdb.org/t/p/w235_and_h235_face/" + props.imgPath  } 
+                    src={"https://image.tmdb.org/t/p/w300_and_h450_bestv2/" + props.imgPath  } 
                     onClick={() => props.toActorPage(props.key)}
-                    onError={(e)=>{e.target.onerror = null; e.target.src="https://dummyimage.com/235x235/000/fff&text=Image+Missing!!!"}}
+                    onError={(e)=>{e.target.onerror = null; e.target.src="https://dummyimage.com/300x450/000/fff&text=Image+Missing!!!"}}
                     />
             </div>
             <div className={Classes.ActorDetails}>

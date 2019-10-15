@@ -28,3 +28,9 @@
     box-sizing: border-box;
     margin: 5px;
 }
+
+@media only screen and (max-width: 600px) {
+    .ModalContent {
+        grid-template-columns: repeat(1 , 1fr);
+    }
+}

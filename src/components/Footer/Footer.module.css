@@ -1,5 +1,5 @@
 .Footer {
-    background-image: url('../../assets/footer_images/award_1280.jpg');
+    background-image: url('../../assets/footer_images/award_1280.png');
     background-repeat: no-repeat;
     /* background-size: 100%; */
     background-size: cover;
@@ -14,3 +14,9 @@
     display: grid;
     grid-template-columns: repeat(2 , 1fr)
 }
+
+@media only screen and (max-width: 600px) {
+    .Footer {
+        display: block;
+    }
+  }

@@ -3,13 +3,15 @@
     cursor: pointer;
     display: inline-block;
     vertical-align: top;
-    width:342px;
+    
     box-sizing: border-box;
 }
 
 .ImageWrapper {
     position: relative;
 }
+
+
 
 .ImageWrapper::after {
     content: "";
@@ -50,3 +52,13 @@
 .ReleaseDate , .AvgVote {
     font-weight: bold;
 }
+
+@media only screen and (max-width: 500px) {
+    .ImageWrapper img {
+        max-width: 100%;
+    }
+
+    .DisplayCards {
+        width:100%;
+    }
+  }

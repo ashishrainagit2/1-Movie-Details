@@ -10,3 +10,10 @@
 .ToolbarWrapper {
  
 }
+
+@media only screen and (max-width: 600px) {
+  .wrapper {
+    margin: 0;
+  
+  }
+}

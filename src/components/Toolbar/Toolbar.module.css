@@ -16,3 +16,15 @@
     display: grid;
     padding: 10px;
 }
+
+@media only screen and (max-width: 600px) {
+    .Toolbar {
+        align-items: center;
+        justify-content: center;
+        grid-template-columns :none;
+    }
+
+    .menubar {
+        margin-left: -30px;
+    }
+  }

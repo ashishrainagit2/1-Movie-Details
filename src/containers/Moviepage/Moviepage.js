@@ -57,7 +57,7 @@ class Moviepage extends Component {
             }
         
         return (
-           <p>{movie}</p>
+           <div>{movie}</div>
         )
     }
 }

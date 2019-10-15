@@ -101,6 +101,14 @@ const Homepage = (props) => {
         props.history.push( '/actor/' + id );
     }
 
+    const isMobile = window.innerWidth < 500;
+
+    let  imageWidth = 300;
+
+    if(isMobile){
+        imageWidth = 500;
+    }
+
     return (
        <div className={classes.Homepage}>
            <div className={classes.TrendingMovies}>
@@ -109,7 +117,7 @@ const Homepage = (props) => {
                 </div>
                 {HomepageState.hits.length  ? <MovieDisplayCards 
                                                 list={HomepageState.hits} 
-                                                imagePath={"https://image.tmdb.org/t/p/w300"} 
+                                                imagePath={"https://image.tmdb.org/t/p/w" + imageWidth} 
                                                 moreInfo={(id) => moreInfoOnClickMovies(id)}
                                             /> :  spinnerForMovieCards }
 
@@ -122,7 +130,7 @@ const Homepage = (props) => {
                 </div>
                 {eventState.eventHits.length ? <EventDisplayCards 
                                                     list={eventState.eventHits} 
-                                                    imagePath={"https://image.tmdb.org/t/p/w300"}  
+                                                    imagePath={"https://image.tmdb.org/t/p/w" + imageWidth}  
                                                     moreInfo={(id) => moreInfoOnClickTv(id)} 
                                                 /> : spinnerForEventCards }
 

@@ -10,3 +10,14 @@
 .info {
     text-align: left;
 }
+
+@media only screen and (max-width: 600px) {
+    .ActorDetails {
+        display: grid;
+    grid-template-columns: 1fr ;
+    }
+
+    .media img {
+        width: 100%;
+    }
+  }

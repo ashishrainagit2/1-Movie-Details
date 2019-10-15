@@ -57,7 +57,7 @@ class Movielist extends Component {
                         <Filter selectedFilters = {this.props.filter} onfilterApply={(event) => this.props.onFilterApplyHandler(event)} selected={this.props.selectedFilter}/>
                 </div>
                 <div className={classes.Movielist}>
-                    <div className={classes.MovielistWrapper}>
+                    <div className={classes.MovielistWrapper} aria-hidden="true">
                         <Modal show={this.props.modalStatus} modalClose={this.props.onClickMovieBox}>
                             {modalContent}
                         </Modal>

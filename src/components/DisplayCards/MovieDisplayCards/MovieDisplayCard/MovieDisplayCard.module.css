@@ -11,6 +11,10 @@
     position: relative;
 }
 
+.ImageWrapper img {
+    width: 100%;
+}
+
 .ImageWrapper::after {
     content: "";
     position: absolute;
@@ -58,3 +62,9 @@
 .posterImg {
     /* border-radius: 10px;; */
 }
+
+@media only screen and (max-width: 500px) {
+    .DisplayCards {
+        width:100%;
+    }
+  }
