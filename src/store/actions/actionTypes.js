@@ -11,3 +11,8 @@ export const SET_MOVIE = "SET_MOVIE";
 export const SET_TRAILER = "SET_TRAILER";
 export const CLOSE_TRAILER = "CLOSE_TRAILER";
 export const SET_ACTOR_DETAILS = "SET_ACTOR_DETAILS"
+
+export const AUTH_START = 'AUTH_START';
+export const AUTH_SUCCESS = 'AUTH_SUCCESS';
+export const AUTH_FAIL = 'AUTH_FAIL';
+export const AUTH_LOGOUT = 'AUTH_LOGOUT';

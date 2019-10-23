@@ -9,6 +9,7 @@ import movieListReducer from './store/reducers/Movielist';
 import tvShowListReducer from './store/reducers/Tvshowlist';
 import moviepageReducer from './store/reducers/Moviepage';
 import actorpageReducer from './store/reducers/Actorpage';
+import authpageReducer from './store/reducers/auth';
 import * as serviceWorker from './serviceWorker';
 import { BrowserRouter } from 'react-router-dom';
 
@@ -18,7 +19,8 @@ const rootReducer = combineReducers({
     movieList: movieListReducer,
     tvShowList : tvShowListReducer,
     moviepage : moviepageReducer,
-    actorpage : actorpageReducer
+    actorpage : actorpageReducer,
+    auth : authpageReducer
 });
 
 const store = createStore(rootReducer, composeEnhancers(

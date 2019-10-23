@@ -13,10 +13,9 @@ const toolbar = (props) => (
             }}>
                 <Logo />
             </NavLink>
-            
         </div>
         <nav className={classes.menubar}>
-            <NavigationItems />
+            <NavigationItems isAuth={props.isAuth}/>
         </nav >
         <div className="searchbar">
             <Searchbar />

@@ -12,6 +12,9 @@ import Contactus from './containers/Contactus/Contactus';
 import Moviepage from './containers/Moviepage/Moviepage';
 import Actorpage from './containers/Actorpage/Actorpage';
 import Tvshow from './containers/Tvshow/Tvshow';
+import Auth from './containers/Auth/Auth';
+import { connect } from 'react-redux';
+import Logout  from './containers/Auth/Logout';
 
 import asyncComponent from '../src/hoc/asyncComponent';
 // import NewPost from './NewPost/NewPost';
@@ -22,12 +25,14 @@ const AsyncNewPost = asyncComponent(() => {
 
 const Tvshowlist = React.lazy(() => import ('./containers/Tvshowlist/Tvshowlist'));
 
+
+
 class App extends Component {
   render(){
     return (
       <div className="App">
         <div className="wrapper">
-          <Toolbar className="ToolbarWrapper"/>
+          <Toolbar isAuth={this.props.isAuth} className="ToolbarWrapper"/>
           <Switch>
             {/* <Route path="/tv" exact component={Tvshowlist} /> */}
             <Route 
@@ -50,6 +55,8 @@ class App extends Component {
             <Route path="/"  exact component={Homepage} />
             <Route path="/home"   component={Homepage} />
             <Route path="/tvshow/:id"  exact component={Tvshow} />
+            <Route path="/auth"  exact component={Auth} />
+            <Route path="/logout"  exact component={Logout} />
             <Route render={() => <h1>OOPS...Page Not found</h1>}/>
           </Switch>
           <Footer />
@@ -60,4 +67,10 @@ class App extends Component {
 }
 
 
-export default App;
+const mapStateToProps = state => {
+  return {
+      isAuth: state.auth.token !== null
+  };
+};
+
+export default connect( mapStateToProps, null )(App);

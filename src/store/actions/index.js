@@ -21,3 +21,8 @@ export {
 export {
     getActorDetails
 } from './Actorpage';
+
+export {
+    auth,
+    logout
+} from './auth';

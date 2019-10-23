@@ -223,14 +223,14 @@ class Contactus extends Component {
     }
 
     inputChangedHandler = (event, inputIdentifier) => {
-        console.log("w")
+
         const updatedOrderForm =  {
             ...this.state.orderForm
         }
         const updatedFormElement = {
             ...updatedOrderForm[inputIdentifier]
         }
-        console.log("1", event.target.value);
+
         updatedFormElement.value = event.target.value;
         updatedFormElement.valid = this.checkValidity(updatedFormElement.value, updatedFormElement.validation);
 
