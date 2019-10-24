@@ -7,6 +7,7 @@ import axios from '../../axios-orders2';
 import * as actions from '../../store/actions/index';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
+import classes from './Auth.module.css';
 
 class Auth extends Component {
 
@@ -156,7 +157,7 @@ class Auth extends Component {
         }
 
         let form = (
-            <React.Fragment>
+            <div>
                 <Button 
                     clicked={this.switchAuthModeHandler}
                     btnType="Danger">{this.state.isSignup ? 'REGISTER' : 'LOGIN'}</Button>
@@ -177,7 +178,7 @@ class Auth extends Component {
                 <Button btnType="Success">SUBMIT</Button>
                 </form>
                 
-            </React.Fragment>
+            </div>
         )
 
         if (this.props.loading) {
@@ -199,10 +200,10 @@ class Auth extends Component {
         }
 
         return (
-            <div>
+            <div className={classes.AuthForm}>
                 {authRedirect}
                 {form}
-                <div>{errorMessage}</div>
+                <div className={classes.error}>{errorMessage}</div>
             </div>
         )
     }

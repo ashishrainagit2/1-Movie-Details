@@ -15,6 +15,8 @@ import Tvshow from './containers/Tvshow/Tvshow';
 import Auth from './containers/Auth/Auth';
 import { connect } from 'react-redux';
 import Logout  from './containers/Auth/Logout';
+import Favourites  from './containers/Favourites/Favourites';
+import * as actions from '../src/store/actions/index';
 
 import asyncComponent from '../src/hoc/asyncComponent';
 // import NewPost from './NewPost/NewPost';
@@ -28,6 +30,11 @@ const Tvshowlist = React.lazy(() => import ('./containers/Tvshowlist/Tvshowlist'
 
 
 class App extends Component {
+
+  componentDidMount () {
+    this.props.onTryAutoSignup();
+  }
+
   render(){
     return (
       <div className="App">
@@ -57,6 +64,7 @@ class App extends Component {
             <Route path="/tvshow/:id"  exact component={Tvshow} />
             <Route path="/auth"  exact component={Auth} />
             <Route path="/logout"  exact component={Logout} />
+            <Route path="/Fav"  exact component={Favourites} />
             <Route render={() => <h1>OOPS...Page Not found</h1>}/>
           </Switch>
           <Footer />
@@ -73,4 +81,11 @@ const mapStateToProps = state => {
   };
 };
 
-export default connect( mapStateToProps, null )(App);
+
+const mapDispatchToProps = dispatch => {
+  return {
+    onTryAutoSignup: () => dispatch( actions.authCheckState() )
+  };
+};
+
+export default connect( mapStateToProps, mapDispatchToProps )(App);

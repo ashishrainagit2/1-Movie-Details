@@ -1,0 +1,10 @@
+.AuthForm {
+    width : 600px;
+    border: 1px solid grey;
+    margin: 20px;
+}
+
+.error {
+    color: red;
+    font-weight: bold;
+}
